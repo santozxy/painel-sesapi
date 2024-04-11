@@ -1,40 +1,59 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TextSearch } from "lucide-react";
+import { TextSearch, Search } from "lucide-react";
 import { useState } from "react";
 
 interface Props {
   setProcess: (process: string) => void;
   process?: string;
 }
+function formatProcessNumber(input: string): string {
+  // Remove todos os caracteres não numéricos do input
+  const numericValue = input.replace(/\D/g, "");
+
+  // Adiciona os pontos, barra e hífen conforme o formato do processo
+  return numericValue.replace(/^(\d{5})(\d{6})(\d{4})(\d{2}).*/, "$1.$2/$3-$4");
+}
 function SearchBar({ process, setProcess }: Props) {
-  const [isValid, setIsValid] = useState(true);
   const regex = /^\d{5}\.\d{6}\/\d{4}-\d{2}$/;
 
   const handleValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProcess(e.target.value);
+    const inputValue = e.target.value;
+    const formattedValue = formatProcessNumber(inputValue);
+    setProcess(formattedValue);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Permitir a exclusão de caracteres (backspace) e outras teclas de navegação
+    const key = e.key;
+    const isDigit = /\d/.test(key);
+    const isNavigationKey = [
+      "Backspace",
+      "ArrowLeft",
+      "ArrowRight",
+      "Home",
+      "End",
+    ].includes(key);
+
+    if (!isDigit && !isNavigationKey) {
+      e.preventDefault();
+    }
   };
   return (
-    <div className="flex-col justify-center items-center">
-      <div className="flex justify-center items-center mt-12">
+    <div className="flex-col flex justify-center items-center">
+      <div className="relative w-96 flex justify-center items-center rounded-md border-2 border-border shadow-md max-sm:w-80">
         <input
           maxLength={20}
-          name="protocol"
           value={process}
           onChange={handleValidation}
+          onKeyDown={handleKeyDown}
           placeholder="Digite o número do protocolo"
           id="protocol"
-          className=" w-96 rounded-md border-0 p-2 text-terciary-light shadow-md ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-1  focus:ring-primary sm:text-sm sm:leading-6"
+          className="w-96 rounded-md p-2 text-terciary-dark placeholder:text-gray-400  sm:text-sm sm:leading-6"
         />
-
-        <button className="rounded-md p-2 items-center justify-center">
-          <TextSearch color="#1094DE" size={30} />
-        </button>
+        <span className="rounded-md absolute right-0 p-2 items-center justify-center">
+          <Search color="#1094DE" size={30} />
+        </span>
       </div>
-      {!isValid && (
-        <p className="text-center p-2 text-red-500">
-          Número inválido. Formato esperado: 00000.000000/0000-00
-        </p>
-      )}
     </div>
   );
 }

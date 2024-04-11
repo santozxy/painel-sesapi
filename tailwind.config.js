@@ -9,8 +9,8 @@ export default {
         placeholder: "#a0a0a0",
         border: "#a0a0a0",
         terciary:{
-          light:"2f2f2f",
-          dark:"2f2f2f",
+          light:"#f5f5f5",
+          dark:"#2f2f2f",
         },
 
       },
