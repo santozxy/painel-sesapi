@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { isAxiosError } from "axios";
 import { Header } from "./components/Header";
-import { BoxDateTime } from "./components/BoxDateTime";
 import { SearchBar } from "./components/SearchBar";
 import {
   DetailResume,
@@ -18,13 +18,15 @@ import { CardListDetailed } from "./components/CardListDetailed";
 import { Loading } from "@components/Loading";
 import { dataResumeObj, filterUnit } from "@utils/FiltersProcess";
 import { CardListResume } from "@components/CardListResume";
+import { BoxDurationProcess } from "@components/BoxDurationProcess";
 
 function App() {
   const [process, setProcess] = useState("");
   const [title, setTitle] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  const [dataInfo, setDataInfo] = useState<Omit<ProcessDTO, "unids">>();
   const [dataFilterUnit, setDataFilterUnit] = useState<Unids>({});
-  const [dataResume, setDataResume] = useState<DetailResume[]>([]);
+  const [dataResume, setDataResume] = useState<DetailResume[] | undefined>([]);
   const [mode, setMode] = useState<number>(1);
 
   const fetchData = async () => {
@@ -33,16 +35,24 @@ function App() {
       const processStr = process.replace(/[^\w\s]/g, "");
       try {
         const response = await searchProcess(processStr, mode);
-        if (response && mode === 0) {
-          const filterMainUnids = filterUnit(response.unids, "OUTROS", true);
-          //const filterUnidsOthers = filterUnit(response.unids, "OUTROS", false);
-          setDataFilterUnit(filterMainUnids);
-        }
-        if (response && mode === 1) {
-          const dataResume = dataResumeObj(response.unids);
+        /* if (response && mode === 0) {
+           const filterMainUnids = filterUnit(response.unids, "OUTROS", true);
+           const filterUnidsOthers = filterUnit(response.unids, "OUTROS", false);
+           setDataFilterUnit(filterMainUnids);
+         */
+        if (response) {
+          const dataResume = dataResumeObj(response?.unids);
           setDataResume(dataResume);
+          setDataInfo(response);
+        } else {
+          toast.error("Processo não encontrado", {
+            autoClose: 3000,
+            draggable: true,
+            position: "top-right",
+          });
+          setDataResume([]);
+          setDataInfo(undefined);
         }
-        setTitle(response?.typeDescription ?? "");
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -64,7 +74,8 @@ function App() {
   //00012.011537/2024-41
   return (
     <div className="flex-col flex gap-10 pb-20">
-      <BoxDateTime />
+      <ToastContainer />
+      <BoxDurationProcess duration={dataInfo?.duration} />
       <Header />
       <div className="flex gap-5 flex-wrap-reverse  justify-center items-center">
         {/* <button
@@ -89,7 +100,9 @@ function App() {
         <Loading />
       ) : mode === 0 ? (
         <>
-          <h1 className="text-xl text-center font-medium mt-5">{title}</h1>
+          <h1 className="text-xl text-center font-medium mt-5">
+            {dataInfo?.typeDescription}
+          </h1>
           <div className="mt-4">
             <CardListDetailed data={dataFilterUnit} />
           </div>
@@ -97,13 +110,14 @@ function App() {
       ) : (
         <>
           <h1 className="text-xl text-center font-medium mt-5">
-            {title}
+            {dataInfo?.typeDescription}
           </h1>
           <div className="mt-4">
-            <CardListResume data={dataResume} />
+            <CardListResume data={dataResume ?? []} />
           </div>
         </>
       )}
+      <div></div>
     </div>
   );
 }
