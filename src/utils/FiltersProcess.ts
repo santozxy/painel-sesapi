@@ -21,7 +21,7 @@ export function filterUnit(data: Unids, group: string, isMain: boolean) {
   return filteredUnids;
 }
 
-export function dataResumeObj(response: ProcessDTOResume) {
+export function dataResumeObj(response: Unids) {
   const dataResume: DetailResume[] = [];
   Object.entries(response).forEach(([key, value]) => {
     Object.entries(value).forEach(([subkey, detail]) => {
