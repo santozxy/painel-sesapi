@@ -5,37 +5,45 @@ interface TableProcessProps {
 export function TableProcess({ data }: TableProcessProps) {
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full bg-white">
+      <table className="min-w-full bg-white shadow-md">
         <thead>
-          <tr>
-            <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
+          <tr className="bg-gray-100">
+            <th className="text-left py-3 px-4 uppercase font-semibold text-sm text-gray-700">
               Descrição
             </th>
-
-            <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
+            <th className="text-left py-3 px-4 uppercase font-semibold text-sm text-gray-700">
               Tipo
             </th>
-            <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
+            <th className="text-left py-3 px-4 uppercase font-semibold text-sm text-gray-700">
               Grupo
             </th>
-            <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
+            <th className="text-left py-3 px-4 uppercase font-semibold text-sm text-gray-700">
               Entrada
             </th>
-            <th className="text-left py-3 px-4 uppercase font-semibold text-sm">
+            <th className="text-left py-3 px-4 uppercase font-semibold text-sm text-gray-700">
               Saída
             </th>
           </tr>
         </thead>
-        <tbody className="text-gray-700">
+        <tbody>
           {data.map((item, index) => (
-            <tr key={index}>
-              <td className="border-t border-gray-200">
+            <tr
+              key={index}
+              className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+            >
+              <td className="border-t border-gray-200 py-4 px-6">
                 {item.unidDescription}
               </td>
-              <td className="border-t border-gray-200">{item.typeGroup}</td>
-              <td className="border-t border-gray-200">{item.group}</td>
-              <td className="border-t border-gray-200">{item.start}</td>
-              <td className="border-t border-gray-200">{item.end}</td>
+              <td className="border-t border-gray-200 py-4 px-6">
+                {item.typeGroup}
+              </td>
+              <td className="border-t border-gray-200 py-4 px-6">
+                {item.group}
+              </td>
+              <td className="border-t border-gray-200 py-4 px-6">
+                {item.start}
+              </td>
+              <td className="border-t border-gray-200 py-4 px-6">{item.end}</td>
             </tr>
           ))}
         </tbody>

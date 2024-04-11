@@ -19,12 +19,13 @@ import { Loading } from "@components/Loading";
 import { dataResumeObj, filterUnit } from "@utils/FiltersProcess";
 import { CardListResume } from "@components/CardListResume";
 import { BoxDurationProcess } from "@components/BoxDurationProcess";
+import { Table } from "lucide-react";
+import { TableProcess } from "@components/TableProcess";
 
 function App() {
   const [process, setProcess] = useState("");
-  const [title, setTitle] = useState<string>("");
   const [loading, setLoading] = useState(false);
-  const [dataInfo, setDataInfo] = useState<Omit<ProcessDTO, "unids">>();
+  const [dataInfo, setDataInfo] = useState<ProcessDTO>();
   const [dataFilterUnit, setDataFilterUnit] = useState<Unids>({});
   const [dataResume, setDataResume] = useState<DetailResume[] | undefined>([]);
   const [mode, setMode] = useState<number>(1);
@@ -71,7 +72,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [process, mode]);
 
-  //00012.011537/2024-41
   return (
     <div className="flex-col flex gap-10 pb-20">
       <ToastContainer />
@@ -115,9 +115,13 @@ function App() {
           <div className="mt-4">
             <CardListResume data={dataResume ?? []} />
           </div>
+          <div className="mx-5 mb-10">
+            {dataResume && dataResume.length > 0 && (
+              <TableProcess data={dataResume ?? []} />
+            )}
+          </div>
         </>
       )}
-      <div></div>
     </div>
   );
 }
