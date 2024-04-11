@@ -1,4 +1,6 @@
-type Unids = Record<string, Record<string, Detail>>;
+export interface Unids {
+  [key: string]: Detail;
+}
 export interface ProcessDTO {
   protocolo: string;
   typeDescription: string;
@@ -11,7 +13,7 @@ export interface ProcessDTO {
   unids: Unids;
 }
 
-interface Detail {
+export interface Detail {
   start: string;
   unidDescription: string;
   typeGroup: string;
