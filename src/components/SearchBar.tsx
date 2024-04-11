@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { TextSearch, Search } from "lucide-react";
-import { useEffect, useState } from "react";
 
 interface Props {
   setProcess: (process: string) => void;
@@ -53,7 +52,7 @@ export function SearchBar({ process, setProcess }: Props) {
           className="w-96 rounded-md p-2 text-terciary-dark placeholder:text-gray-400  sm:text-sm sm:leading-6"
         />
         <span className="rounded-md absolute right-0 p-2 items-center justify-center">
-          <Search color="#1094DE" size={30} />
+          <TextSearch color="#1094DE" size={30} />
         </span>
       </div>
     </div>
