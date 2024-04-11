@@ -1,56 +1,72 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import "react-toastify/dist/ReactToastify.css";
-import { Header } from "@components/Header";
-import { Box, List } from "lucide-react";
-import { SearchBar } from "@components/SearchBar";
-import { ProcessDTO } from "@services/process/processDTO";
 import { useEffect, useState } from "react";
-import { searchProcess } from "@services/process/processService";
-import { ToastContainer, toast } from "react-toastify";
-import { AxiosError } from "axios";
-import { BoxDateTime } from "@components/BoxDateTime";
-import { Card } from "@components/Card";
+import { toast } from "react-toastify";
+import { isAxiosError } from "axios";
+import { Header } from "./components/Header";
+import { BoxDateTime } from "./components/BoxDateTime";
+import { SearchBar } from "./components/SearchBar";
+import { ProcessDTO, Unids } from "./services/process/processDTO";
+import { searchProcess } from "./services/process/processService";
+import { CardList } from "./components/CardList";
 
 function App() {
   const [process, setProcess] = useState("");
   const [data, setData] = useState<ProcessDTO>();
-  const [dataFilterUnit, setDataFilterUnit] = useState<
-    [string, Record<string, any>][]
-  >([]);
+  const [loading, setLoading] = useState(false);
+  const [dataFilterUnit, setDataFilterUnit] = useState<Unids>({});
 
-  useEffect(() => {
+  const fetchData = async () => {
+    setLoading(true);
     if (process.length === 20) {
       const processStr = process.replace(/[^\w\s]/g, "");
-      searchProcess(processStr)
-        .then((response) => {
-          if (response) {
-            const filteredUnids = Object.entries(response.unids).filter(
-              ([_, unidData]) =>
-                unidData[Object.keys(unidData)[0]].group !== "OUTROS"
-            );
-            console.log(filteredUnids);
-            setDataFilterUnit(filteredUnids);
-            setData(response);
-            console.log(response);
-          }
-        })
-        .catch((error) => {
-          if (AxiosError) {
-            toast.error("Erro ao buscar processo");
-          }
-        });
+      try {
+        const response = await searchProcess(processStr);
+        if (response) {
+          const filteredUnids = Object.entries(response.unids)
+            .filter(([_, unidData]) => {
+              const firstKey = Object.keys(unidData)[0];
+              return unidData[firstKey].group !== "OUTROS";
+            })
+            .reduce((acc, [key, value]) => {
+              acc[key] = value;
+              return acc;
+            }, {} as Unids);
+
+          setDataFilterUnit(filteredUnids);
+          setData(response);
+          setLoading(false);
+        }
+      } catch (error) {
+        setLoading(false);
+        console.log("Rsakdhsaiduashnkph2nzkiph2zink");
+        if (isAxiosError(error)) {
+          toast.error("Erro ao buscar o processo");
+          console.log(error.response?.data);
+        } else {
+          console.error(error);
+        }
+      }
     }
+  };
+
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [process]);
-  // 00012011537202441
+
+  //00012.011537/2024-41
   return (
-    <div className="flex-col flex gap-10">
+    <div className="flex-col flex gap-10 pb-20">
       <BoxDateTime />
       <Header />
       <SearchBar process={process} setProcess={setProcess} />
       <h1 className="text-xl text-center font-medium mt-10">
         {data?.typeDescription ?? "Pesquise por um protocolo"}
       </h1>
+      <div className="mt-4">
+        <CardList data={dataFilterUnit} />
+      </div>
     </div>
   );
 }
