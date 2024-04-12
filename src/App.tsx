@@ -39,6 +39,7 @@ function App() {
             draggable: true,
             position: "top-right",
           });
+          setData(undefined);
           setDataGrouped([]);
           setDataDetailed([]);
         }
