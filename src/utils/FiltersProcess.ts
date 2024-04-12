@@ -1,36 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  DetailResume,
-  ProcessDTOResume,
-  Unids,
+  Detail,
+  DetailedDetail,
+  GroupedDetail,
 } from "@services/process/processDTO";
 
-export function filterUnit(data: Unids, group: string, isMain: boolean) {
-  const filteredUnids = Object.entries(data)
-    .filter(([_, unidData]) => {
-      const firstKey = Object.keys(unidData)[0];
-      if (!isMain) {
-        // return unidData[firstKey].group === group;
-      }
-      // return unidData[firstKey].group !== group;
-    })
-    .reduce((acc, [key, value]) => {
-      acc[key] = value;
-      return acc;
-    }, {} as Unids);
-  return filteredUnids;
-}
-
-export function dataResumeObj(response: Unids) {
-  const dataResume: DetailResume[] = [];
+export function getDataGrouped(response: GroupedDetail) {
+  const data: Detail[] = [];
   Object.entries(response).forEach(([key, value]) => {
     Object.entries(value).forEach(([subkey, detail]) => {
-      const detailResume = detail as DetailResume;
-      Object.entries(detailResume).forEach(([subsubkey, subdetail]) => {
-        dataResume.push(subdetail as DetailResume);
-        console.log(subdetail as DetailResume)
+      const dataGrouped = detail as Detail;
+      Object.entries(dataGrouped).forEach(([subsubkey, subdetail]) => {
+        data.push(subdetail as Detail);
       });
     });
   });
-  return dataResume;
+  return data;
+}
+
+export function getDataDetailed(response: DetailedDetail) {
+  const data: Detail[] = [];
+  Object.entries(response).forEach(([key, value]) => {
+    data.push(value as Detail);
+  });
+  return data;
 }
