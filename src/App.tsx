@@ -36,11 +36,6 @@ function App() {
       const processStr = process.replace(/[^\w\s]/g, "");
       try {
         const response = await searchProcess(processStr, mode);
-        /* if (response && mode === 0) {
-           const filterMainUnids = filterUnit(response.unids, "OUTROS", true);
-           const filterUnidsOthers = filterUnit(response.unids, "OUTROS", false);
-           setDataFilterUnit(filterMainUnids);
-         */
         if (response) {
           const dataResume = dataResumeObj(response?.unids);
           setDataResume(dataResume);
