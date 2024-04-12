@@ -29,8 +29,11 @@ function App() {
         const response = await searchProcess(processStr);
         if (response) {
           const dataGrouped = getDataGrouped(response.grouped);
+          const filteredGroup = dataGrouped.filter(
+            (data) => data.group !== "OUTROS"
+          );
           const dataDetailed = getDataDetailed(response.detailed);
-          setDataGrouped(dataGrouped);
+          setDataGrouped(filteredGroup);
           setDataDetailed(dataDetailed);
           setData(response);
         }
@@ -68,9 +71,16 @@ function App() {
         <Loading />
       ) : (
         <>
-          <h1 className="text-xl text-center font-medium mt-5">
-            {data?.typeDescription}
-          </h1>
+          <div className="flex gap-2 justify-center items-center">
+            <h1 className="text-xl text-center font-bold mt-5">
+              {data?.typeDescription
+                ? `Tipo de Processo: `
+                : "Pesquise por um processo"}
+            </h1>
+            <h1 className="text-xl text-center font-medium mt-5">
+              {data?.typeDescription}
+            </h1>
+          </div>
           <div className="mt-4">
             <CardListResume data={dataGrouped} />
           </div>
