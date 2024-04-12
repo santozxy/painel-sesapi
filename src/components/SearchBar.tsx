@@ -41,7 +41,7 @@ export function SearchBar({ process, setProcess }: Props) {
   };
 
   return (
-    <div className="flex-col flex justify-center items-center">
+    <div className="flex-col z-10 flex justify-center items-center">
       <div className="relative w-96 flex justify-center items-center rounded-md border-2 border-border shadow-md max-sm:w-80">
         <input
           maxLength={20}
