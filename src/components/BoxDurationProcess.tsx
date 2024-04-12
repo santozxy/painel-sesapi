@@ -11,7 +11,7 @@ export function BoxDurationProcess({ duration = "" }) {
     >
       {duration ? (
         <div
-          className={`fixed bottom-4 right-4 bg-white max-sm:bottom-0 max-sm:right-0 border border-gray-300 rounded-lg shadow-md text-lg cursor-grab ${
+          className={`fixed bottom-4 right-4 bg-white max-sm:bottom-0 max-sm:right-0 border border-gray-300 rounded-lg shadow-md text-lg cursor-grab z-50 ${
             isDragging ? "shadow-primary" : ""
           }`}
         >

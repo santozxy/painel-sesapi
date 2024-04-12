@@ -64,7 +64,7 @@ function App() {
       <Header />
       <ToastContainer />
       <BoxDurationProcess duration={data?.duration} />
-      <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20">
+      <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20 max-sm:mt-60">
         <SearchBar process={process} setProcess={setProcess} />
       </div>
       {loading ? (
