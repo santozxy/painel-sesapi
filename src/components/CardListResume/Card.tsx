@@ -1,22 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
-import { Detail, DetailResume } from "@services/process/processDTO";
+import { Detail } from "@services/process/processDTO";
 import { LogIn, LogOut } from "lucide-react";
 import { compareAsc } from "date-fns";
 import { calcularTempoDecorrido } from "@utils/CompareUtils";
 
 interface CardProps {
-  detail: Detail | DetailResume;
+  detail: Detail;
   cardColor: string;
 }
 
 export function Card({ detail, cardColor }: CardProps) {
   const { minutes, seconds, start, unidDescription, group, end } = detail;
-  console.log(start);
-  const formattedGroup = group.replace(/[_]|[\u0300-\u036f]/g, " ");
+  const formattedGroup =
+    group === "OUTROS" ? group : group.replace(/[_]|[\u0300-\u036f]/g, " ");
 
   const formattedDuration = calcularTempoDecorrido(start, end);
-  console.log(formattedDuration.duration.length === 2 , group)
   const duration = formattedDuration.duration;
 
   return (

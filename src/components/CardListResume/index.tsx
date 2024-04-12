@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
-import { Card } from "../Card";
-import { DetailResume } from "@services/process/processDTO";
+import { Card } from "./Card";
+import { Detail } from "@services/process/processDTO";
 
 interface CardListProps {
-  data: DetailResume[];
+  data: Detail[];
 }
 
 const colors = [
@@ -25,7 +24,7 @@ export function CardListResume({ data }: CardListProps) {
   const filteredData = data.filter((detail) => detail.group !== "OUTROS");
   return (
     <div className="flex flex-wrap  gap-6 justify-center items-center">
-      {filteredData.map((detail, index) => (
+      {data.map((detail, index) => (
         <Card
           key={`${detail.group}-${index}`}
           detail={detail}
