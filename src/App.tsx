@@ -33,22 +33,17 @@ function App() {
           setDataGrouped(dataGrouped);
           setDataDetailed(dataDetailed);
           setData(response);
-        } else {
-          toast.error("Processo não encontrado", {
-            autoClose: 3000,
-            draggable: true,
-            position: "top-right",
-          });
-          setData(undefined);
-          setDataGrouped([]);
-          setDataDetailed([]);
         }
         setLoading(false);
       } catch (error) {
+        setData(undefined);
+        setDataGrouped([]);
+        setDataDetailed([]);
         setLoading(false);
         if (isAxiosError(error)) {
-          toast.error("Erro ao buscar o processo");
-          console.log(error.response?.data);
+          toast.error(
+            error.response?.data?.message || "Erro ao buscar processo"
+          );
         } else {
           console.error(error);
         }

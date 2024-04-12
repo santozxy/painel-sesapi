@@ -3,12 +3,8 @@ import { ProcessData } from "./processDTO";
 
 const base_url = import.meta.env.VITE_BASE_URL;
 async function searchProcess(process: string) {
-  try {
-    const { data } = await axios.get<ProcessData>(`${base_url}/${process}`);
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+  const { data } = await axios.get<ProcessData>(`${base_url}/${process}`);
+  return data;
 }
 
 export { searchProcess };
