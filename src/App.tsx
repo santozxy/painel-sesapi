@@ -55,7 +55,7 @@ function App() {
   };
 
   useEffect(() => {
-    if (RegExp("^[0-9]").test(process) || process === "") {
+    if (/^[\d./-]*$/.test(process) && RegExp("") || process === "") {
       if (process.length === 20) {
         fetchData();
       }
