@@ -31,7 +31,6 @@ export function SearchBar({ process, setProcess }: Props) {
     const inputValue = e.target.value;
     const previousValue = process || ""; // Valor anterior
     const formattedValue = formatProcessNumber(inputValue);
-
     // Ver se houve uma adição ou remoção de caracteres
     if (formattedValue.length > previousValue.length) {
       setProcess(formattedValue);

@@ -13,6 +13,7 @@ import { getDataDetailed, getDataGrouped } from "@utils/FiltersProcess";
 import { CardListResume } from "@components/CardListResume";
 import { BoxDurationProcess } from "@components/BoxDurationProcess";
 import { TableProcess } from "@components/TableProcess";
+import { set } from "date-fns";
 
 function App() {
   const [process, setProcess] = useState("");
@@ -22,42 +23,47 @@ function App() {
   const [dataDetailed, setDataDetailed] = useState<Detail[]>([]);
 
   const fetchData = async () => {
-    if (process.length === 20) {
-      setLoading(true);
-      const processStr = process.replace(/[^\w\s]/g, "");
-      try {
-        const response = await searchProcess(processStr);
-        if (response) {
-          const dataGrouped = getDataGrouped(response.grouped);
-          const filteredGroup = dataGrouped.filter(
-            (data) => data.group !== "OUTROS"
-          );
-          const dataDetailed = getDataDetailed(response.detailed);
-          setDataGrouped(filteredGroup);
-          setDataDetailed(dataDetailed);
-          setData(response);
-          setProcess("");
-        }
-        setLoading(false);
-      } catch (error) {
-        setData(undefined);
-        setDataGrouped([]);
-        setDataDetailed([]);
+    setLoading(true);
+    const processStr = process.replace(/[^\w\s]/g, "");
+    console.log(processStr);
+    try {
+      const response = await searchProcess(processStr);
+      if (response) {
+        const dataGrouped = getDataGrouped(response.grouped);
+        const filteredGroup = dataGrouped.filter(
+          (data) => data.group !== "OUTROS"
+        );
+        const dataDetailed = getDataDetailed(response.detailed);
+        setDataGrouped(filteredGroup);
+        setDataDetailed(dataDetailed);
+        setData(response);
         setProcess("");
-        setLoading(false);
-        if (isAxiosError(error)) {
-          toast.error(
-            error.response?.data?.message || "Erro ao buscar processo"
-          );
-        } else {
-          console.error(error);
-        }
+      }
+      setLoading(false);
+    } catch (error) {
+      setData(undefined);
+      setDataGrouped([]);
+      setDataDetailed([]);
+      setProcess("");
+      setLoading(false);
+      if (isAxiosError(error)) {
+        toast.error(error.response?.data?.message || "Erro ao buscar processo");
+      } else {
+        console.error(error);
       }
     }
   };
 
   useEffect(() => {
-    fetchData();
+    if (RegExp("^[0-9]").test(process) || process === "") {
+      if (process.length === 20) {
+        fetchData();
+      }
+    } else {
+      toast.error("O processo deve conter apenas números");
+      setProcess("");
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [process]);
 
