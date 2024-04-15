@@ -55,7 +55,7 @@ function App() {
   };
 
   useEffect(() => {
-    if (/^[\d./-]*$/.test(process) && RegExp("") || process === "") {
+    if ((/^[\d./-]*$/.test(process)) || process === "") {
       if (process.length === 20) {
         fetchData();
       }
