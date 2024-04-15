@@ -3,8 +3,6 @@ interface TableProcessProps {
   data: Detail[];
 }
 export function TableProcess({ data }: TableProcessProps) {
-  console.log(data);
-
   return (
     <div className="overflow-x-auto rounded-lg">
       <table className="min-w-full bg-white shadow-md rounded-lg">
@@ -13,7 +11,6 @@ export function TableProcess({ data }: TableProcessProps) {
             <th className="text-center border py-3 px-4 uppercase font-semibold text-base text-terciary-light">
               Unidade
             </th>
-
             <th className="text-center py-3 border  px-4 uppercase font-semibold text-base text-terciary-light">
               Fluxograma
             </th>
