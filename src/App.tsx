@@ -36,12 +36,14 @@ function App() {
           setDataGrouped(filteredGroup);
           setDataDetailed(dataDetailed);
           setData(response);
+          setProcess("");
         }
         setLoading(false);
       } catch (error) {
         setData(undefined);
         setDataGrouped([]);
         setDataDetailed([]);
+        setProcess("");
         setLoading(false);
         if (isAxiosError(error)) {
           toast.error(
@@ -63,7 +65,7 @@ function App() {
     <div className="flex-col flex gap-10 pb-20">
       <Header />
       <ToastContainer />
-      <BoxDurationProcess duration={data?.duration} />
+      <BoxDurationProcess duration={data?.duration} process={data?.protocolo} />
       <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20 max-sm:mt-60">
         <SearchBar process={process} setProcess={setProcess} />
       </div>
