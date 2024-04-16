@@ -60,8 +60,9 @@ function App() {
         fetchData();
       }
     } else {
+      const formattedValue = process.substring(0, process.length - 1);
+      setProcess(formattedValue);
       toast.error("O processo deve conter apenas números");
-      setProcess("");
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,7 +71,7 @@ function App() {
   return (
     <div className="flex-col flex gap-10 pb-20">
       <Header />
-      <ToastContainer />
+      <ToastContainer pauseOnHover={false} />
       <BoxDurationProcess duration={data?.duration} process={data?.protocolo} />
       <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20 max-sm:mt-60">
         <SearchBar process={process} setProcess={setProcess} />
@@ -79,13 +80,13 @@ function App() {
         <Loading />
       ) : (
         <>
-          <div className="flex gap-2 justify-center items-center">
-            <h1 className="text-xl text-center font-bold mt-5">
+          <div className="flex gap-2 justify-center items-center max-sm:flex-col">
+            <h1 className="text-xl text-center font-bold mt-5 max-sm:text-base">
               {data?.typeDescription
                 ? `Tipo de Processo: `
                 : "Pesquise por um processo"}
             </h1>
-            <h1 className="text-xl text-center font-medium mt-5">
+            <h1 className="text-xl text-center font-medium mt-5 max-sm:text-base">
               {data?.typeDescription}
             </h1>
           </div>
