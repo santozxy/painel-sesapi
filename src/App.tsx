@@ -82,7 +82,7 @@ function App() {
               {data?.typeDescription}
             </h1>
           </div>
-          <div className="mt-4">
+          <div className="mt-4 mb-8">
             <CardListResume data={dataGrouped} />
           </div>
           <div className="mx-5 mb-10">
