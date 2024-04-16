@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { isAxiosError } from "axios";
 import { Header } from "./components/Header";
@@ -13,7 +13,6 @@ import { getDataDetailed, getDataGrouped } from "@utils/FiltersProcess";
 import { CardListResume } from "@components/CardListResume";
 import { BoxDurationProcess } from "@components/BoxDurationProcess";
 import { TableProcess } from "@components/TableProcess";
-import { set } from "date-fns";
 
 function App() {
   const [process, setProcess] = useState("");
@@ -22,10 +21,9 @@ function App() {
   const [dataGrouped, setDataGrouped] = useState<Detail[]>([]);
   const [dataDetailed, setDataDetailed] = useState<Detail[]>([]);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     const processStr = process.replace(/[^\w\s]/g, "");
-    console.log(processStr);
     try {
       const response = await searchProcess(processStr);
       if (response) {
@@ -52,17 +50,11 @@ function App() {
         console.error(error);
       }
     }
-  };
+  }, [process]);
 
   useEffect(() => {
-    if ((/^[\d./-]*$/.test(process)) || process === "") {
-      if (process.length === 20) {
-        fetchData();
-      }
-    } else {
-      const formattedValue = process.substring(0, process.length - 1);
-      setProcess(formattedValue);
-      toast.error("O processo deve conter apenas números");
+    if (process.length === 20) {
+      fetchData();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,12 +66,12 @@ function App() {
       <ToastContainer pauseOnHover={false} />
       <BoxDurationProcess duration={data?.duration} process={data?.protocolo} />
       <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20 max-sm:mt-60">
-        <SearchBar process={process} setProcess={setProcess} />
+        <SearchBar loading={loading} setProcess={setProcess} />
       </div>
       {loading ? (
         <Loading />
       ) : (
-        <>
+        <div className="flex flex-col justify-center items-center">
           <div className="flex gap-2 justify-center items-center max-sm:flex-col">
             <h1 className="text-xl text-center font-bold mt-5 max-sm:text-base">
               {data?.typeDescription
@@ -98,7 +90,7 @@ function App() {
               <TableProcess data={dataDetailed} />
             )}
           </div>
-        </>
+        </div>
       )}
     </div>
   );
