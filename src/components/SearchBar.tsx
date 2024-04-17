@@ -7,7 +7,6 @@ interface Props {
 
 function formatProcessNumber(input: string) {
   const numericValue = input.replace(/[\D\s]/g, "");
-
   // Formatar o número parcialmente conforme o usuário digita
   let formattedValue = "";
   if (numericValue.length >= 5) {
@@ -22,11 +21,9 @@ function formatProcessNumber(input: string) {
   if (numericValue.length >= 17) {
     formattedValue += numericValue.slice(15, 17);
   }
-
   return formattedValue;
 }
 const regex = /^(\d{5})?\.?(\d{6})?\/?(\d{0,4})?-?(\d{0,2})$/;
-
 export function SearchBar({ setProcess, loading }: Props) {
   const [search, setSearch] = useState<string>("00012.");
   const [currentSearch, setCurrentSearch] = useState<string>("");
