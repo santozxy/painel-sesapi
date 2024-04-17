@@ -22,5 +22,7 @@ export function CalculatorTimeDuration(start: string, end: string) {
     segundos > 0 ? `${segundos} Segundo(s)` : "0 Segundo(s)";
   const duration = `${differenceDays} ${differenceHours} ${differenceMinutes} ${differenceSeconds}`;
 
-  return { duration };
+  const limitDate = dias <= 2 
+
+  return { duration,limitDate };
 }

@@ -25,8 +25,10 @@ export function Card({ detail, cardColor }: CardProps) {
     group === "OUTROS" ? group : group.replace(/[_]|[\u0300-\u036f]/g, " ");
   const formattedDuration = CalculatorTimeDuration(start, end);
   const duration = formattedDuration.duration;
+  const limitDate = formattedDuration.limitDate;
+  const verifyColorTerm = limitDate ? "text-[#027651]" : "text-red-500";
   const colorOthers = group === "OUTROS" ? "bg-gray-300" : cardColor;
-  const colorIcon =  "#2f2f2f";
+  const colorIcon = "#2f2f2f";
 
   return (
     <div
@@ -38,7 +40,9 @@ export function Card({ detail, cardColor }: CardProps) {
         className={`px-2 py-3 flex items-center justify-center relative ${colorOthers} rounded-t-md cursor-pointer`}
         {...getToggleProps()}
       >
-        <p className="font-semibold text-center text-terciary-dark">{formattedGroup}</p>
+        <p className="font-semibold text-center text-terciary-dark">
+          {formattedGroup === "PAGAMENTO" ? "FUNSAUDE PAG" : formattedGroup}
+        </p>
         <div className="absolute right-2">
           {isExpanded ? (
             <ChevronUpIcon color={colorIcon} />
@@ -48,21 +52,33 @@ export function Card({ detail, cardColor }: CardProps) {
         </div>
       </div>
       <div className="border-b-2 p-1">
-        <p className="text-sm font-medium text-center text-terciary-dark">{unidDescription}</p>
+        <p className="text-sm font-medium text-center text-terciary-dark">
+          {unidDescription}
+        </p>
       </div>
       <div className="flex flex-col gap-2" {...getCollapseProps()}>
         <div className="flex justify-center p-1 gap-2 border-b-2">
           <LogIn size={20} />
-          <p className="text-sm font-medium text-center text-terciary-dark">{start}</p>
+          <p className="text-sm font-medium text-center text-terciary-dark">
+            {start}
+          </p>
         </div>
 
         <div className="flex justify-center p-1 gap-2 border-b-2">
           <LogOut size={20} />
-          <p className="text-sm font-medium text-center text-terciary-dark">{end}</p>
+          <p className="text-sm font-medium text-center text-terciary-dark">
+            {end}
+          </p>
         </div>
       </div>
       <div className="p-1 flex-1">
-        <p className="text-sm font-medium text-center text-terciary-dark">{duration}</p>
+        <p
+          className={`text-sm font-medium text-center ${
+            group != "OUTROS" ? verifyColorTerm : ""
+          }`}
+        >
+          {duration}
+        </p>
       </div>
     </div>
   );
