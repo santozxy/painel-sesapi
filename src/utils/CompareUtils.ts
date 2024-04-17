@@ -6,7 +6,7 @@ import {
   parse,
 } from "date-fns";
 
-export function calcularTempoDecorrido(start: string, end: string) {
+export function CalculatorTimeDuration(start: string, end: string) {
   const dataInicio = parse(start, "dd/MM/yyyy HH:mm:ss", new Date());
   const dataFim = parse(end, "dd/MM/yyyy HH:mm:ss", new Date());
 
