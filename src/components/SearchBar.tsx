@@ -77,9 +77,7 @@ export function SearchBar({ setProcess, loading }: Props) {
     return [];
   };
 
-  const filteredSearchs = lastSearchs
-    .filter((search) => search !== currentSearch)
-    .flatMap((search) => search);
+  const filteredSearchs = lastSearchs.flatMap((search) => search);
 
   useEffect(() => {
     getSearchsStorage();
@@ -90,7 +88,8 @@ export function SearchBar({ setProcess, loading }: Props) {
       setProcess(search);
       setCurrentSearch(search);
       setLastSearchs((prev) => {
-        return [search, ...prev];
+        prev.unshift(search);
+        return prev;
       });
       saveSearchsStorage(lastSearchs);
       setSearch("");
@@ -137,7 +136,7 @@ export function SearchBar({ setProcess, loading }: Props) {
           Digite apenas números!
         </p>
       )}
-      {filteredSearchs.length > 0 && (
+      {/* {filteredSearchs.length > 0 && (
         <div className="flex flex-col gap-3 mt-5 w-96 max-sm:w-80">
           <div className="flex justify-between items-center">
             <h2 className="text-sm text-start font-medium">Histórico:</h2>
@@ -165,7 +164,7 @@ export function SearchBar({ setProcess, loading }: Props) {
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

@@ -28,11 +28,11 @@ function App() {
       const response = await searchProcess(processStr);
       if (response) {
         const dataGrouped = getDataGrouped(response.grouped);
-        const filteredGroup = dataGrouped.filter(
-          (data) => data.group !== "OUTROS"
-        );
+        // const filteredGroup = dataGrouped.filter(
+        //   (data) => data.group !== "OUTROS"
+        // );
         const dataDetailed = getDataDetailed(response.detailed);
-        setDataGrouped(filteredGroup);
+        setDataGrouped(dataGrouped);
         setDataDetailed(dataDetailed);
         setData(response);
         setProcess("");

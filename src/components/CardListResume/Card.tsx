@@ -14,13 +14,12 @@ export function Card({ detail, cardColor }: CardProps) {
   const { minutes, seconds, start, unidDescription, group, end } = detail;
   const formattedGroup =
     group === "OUTROS" ? group : group.replace(/[_]|[\u0300-\u036f]/g, " ");
-
   const formattedDuration = calcularTempoDecorrido(start, end);
   const duration = formattedDuration.duration;
 
   return (
     <div className="bg-white rounded-md shadow-md flex flex-col gap-2 w-64 h-64 ">
-      <div className={`px-2 py-3 ${cardColor} rounded-t-md`}>
+      <div className={`px-2 py-3 ${group === "OUTROS" ? "bg-gray-300":cardColor} rounded-t-md`}>
         <p className="font-semibold text-center">{formattedGroup}</p>
       </div>
       <div className="pb-1 border-b-2">
