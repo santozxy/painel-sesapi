@@ -2,7 +2,21 @@ import { Detail } from "@services/process/processDTO";
 interface TableProcessProps {
   data: Detail[];
 }
+
 export function TableProcess({ data }: TableProcessProps) {
+  function renameGroup(group: string) {
+    const formattedGroup = group.replace(/_/g, " ");
+    const groupRename =
+      formattedGroup === "PAGAMENTO"
+        ? "FUNSAUDE"
+        : formattedGroup === "GABINETE"
+        ? "GAB"
+        : formattedGroup === "UNIDADE FISCAL"
+        ? "UNIDADE EXECUTANTE"
+        : formattedGroup;
+    return groupRename;
+  }
+
   return (
     <div className="overflow-x-auto rounded-lg">
       <table className="min-w-full bg-white shadow-md rounded-lg">
@@ -33,9 +47,7 @@ export function TableProcess({ data }: TableProcessProps) {
               </td>
 
               <td className="border border-gray-200 py-4 px-6 text-center">
-                {item.group === "OUTROS"
-                  ? item.group
-                  : item.group.replace(/[_]|[\u0300-\u036f]/g, " ")}
+                {item.group === "OUTROS" ? item.group : renameGroup(item.group)}
               </td>
               <td className="border border-gray-200 py-4 px-6 text-center">
                 {item.start}
