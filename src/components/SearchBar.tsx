@@ -10,7 +10,7 @@ interface Props {
 
 const KEY_SEARCHS = "searchs";
 function formatProcessNumber(input: string) {
-  const numericValue = input.replace(/\D/g, "");
+  const numericValue = input.replace(/[\D\s]/g, "");
 
   // Formatar o número parcialmente conforme o usuário digita
   let formattedValue = "";
@@ -39,7 +39,7 @@ export function SearchBar({ setProcess, loading }: Props) {
   const [showSelect, setShowSelect] = useState<boolean>(false);
 
   const handleValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
+    const inputValue = e.target.value.replace(/[\s]/g, "").trim();
     const previousValue = search || "";
     const formattedValue = formatProcessNumber(inputValue);
     // Ver se houve uma adição ou remoção de caracteres
@@ -121,50 +121,48 @@ export function SearchBar({ setProcess, loading }: Props) {
           value={search}
           onChange={handleValidation}
           disabled={loading}
+          type="search"
           placeholder="Digite o número do protocolo"
           id="protocol"
           className="w-96 rounded-md p-2 text-terciary-dark outline-none placeholder:text-gray-400  max-sm:text-sm sm:leading-6"
           onFocus={() => setShowSelect(true)}
-          onBlur={() => setShowSelect(false)}
         />
-        <button className="rounded-md absolute right-0 p-2 items-center justify-center cursor-pointer">
-          <TextSearch color="#1094DE" size={30} />
-        </button>
+
+        {/* {filteredSearchs?.length > 0 && showSelect && (
+          <div className="flex flex-col gap-3 mt-5 w-96 h-60 max-sm:w-80 absolute bg-white shadow-md top-10">
+            <div className="flex justify-between items-center">
+              <h2 className="text-sm text-start font-medium">Histórico:</h2>
+              <button
+                onClick={() => {
+                  setLastSearchs([]);
+                  removeSearchsStorage();
+                }}
+                className="text-sm text-red-500 hover:text-red-700 font-medium"
+              >
+                Limpar histórico
+              </button>
+            </div>
+            <div className="flex flex-col justify-center items-center overflow-y-scroll gap-1 ">
+              {filteredSearchs.map((search, index) => (
+                <button
+                  key={index}
+                  className="p-2 w-full border-b-2 rounded-md border-primary bg-primary round hover:bg-blue-400"
+                  onClick={() => setSearch(search)}
+                >
+                  <p className="text-terciary-light hover:bg-blue-400 text-sm  font-medium">
+                    {search}
+                  </p>
+                </button>
+              ))}
+            </div>
+          </div>
+        )} */}
       </div>
       {!isValueValid && (
         <p className="flex text-red-500 self-start text-sm text-left mt-2">
           Digite apenas números!
         </p>
       )}
-      {/* {filteredSearchs?.length > 0 && showSelect && (
-        <div className="flex flex-col gap-3 mt-5 w-96 h-60 max-sm:w-80">
-          <div className="flex justify-between items-center">
-            <h2 className="text-sm text-start font-medium">Histórico:</h2>
-            <button
-              onClick={() => {
-                setLastSearchs([]);
-                removeSearchsStorage();
-              }}
-              className="text-sm text-red-500 hover:text-red-700 font-medium"
-            >
-              Limpar histórico
-            </button>
-          </div>
-          <div className="flex flex-col overflow-y-scroll gap-4 ">
-            {filteredSearchs.map((search, index) => (
-              <button
-                key={index}
-                className=" p-2 border-b-2 rounded-md border-primary bg-primary round hover:bg-blue-400 "
-                onClick={() => setSearch(search)}
-              >
-                <p className="text-terciary-light hover:bg-blue-400 text-sm w-56 font-medium">
-                  {search}
-                </p>
-              </button>
-            ))}
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }
