@@ -11,7 +11,6 @@ import { getDataDetailed, getDataGrouped } from "@utils/filtersProcess";
 import { ListCards } from "@components/ListCards";
 import { BoxDurationProcess } from "@components/BoxDurationProcess";
 import { TableProcess } from "@components/TableProcess";
-
 function App() {
   const [process, setProcess] = useState("");
   const [loading, setLoading] = useState(false);
