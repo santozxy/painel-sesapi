@@ -47,6 +47,8 @@ export function Card({ detail, cardColor }: CardProps) {
             ? "GAB"
             : formattedGroup === "UNIDADE FISCAL"
             ? "UNIDADE EXECUTANTE"
+            : formattedGroup === "GERENCIA CONTRATO"
+            ? "GESTÃO DE CONTRATOS"
             : formattedGroup}
         </p>
         <div className="absolute right-2">
