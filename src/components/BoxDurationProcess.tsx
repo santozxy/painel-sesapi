@@ -4,14 +4,9 @@ import Draggable from "react-draggable";
 import { toast } from "react-toastify";
 export function BoxDurationProcess({ duration = "", process = "" }) {
   const [isDragging, setIsDragging] = useState(false);
-  async function copyToClipboard() {
-    try {
-      await navigator.clipboard.writeText(process);
-      toast.success(`Processo foi copiado!\n${process}`);
-    } catch (err) {
-      console.error(err);
-      toast.error("Erro ao copiar processo");
-    }
+  function copyToClipboard() {
+    navigator.clipboard.writeText(process);
+    toast.success(`Processo foi copiado!\n${process}`);
   }
   return (
     <Draggable

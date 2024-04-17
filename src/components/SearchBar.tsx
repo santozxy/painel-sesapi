@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { set } from "date-fns";
-import { se } from "date-fns/locale/se";
 import { TextSearch, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -38,7 +36,7 @@ export function SearchBar({ setProcess, loading }: Props) {
   const [currentSearch, setCurrentSearch] = useState<string>("");
   const [lastSearchs, setLastSearchs] = useState<string[]>([]);
   const [isValueValid, setIsValueValid] = useState<boolean>(true);
-  const [searchsStorage, setSearchsStorage] = useState<string[]>([]);
+  const [showSelect, setShowSelect] = useState<boolean>(false);
 
   const handleValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -126,18 +124,20 @@ export function SearchBar({ setProcess, loading }: Props) {
           placeholder="Digite o número do protocolo"
           id="protocol"
           className="w-96 rounded-md p-2 text-terciary-dark outline-none placeholder:text-gray-400  max-sm:text-sm sm:leading-6"
+          onFocus={() => setShowSelect(true)}
+          onBlur={() => setShowSelect(false)}
         />
-        <span className="rounded-md absolute right-0 p-2 items-center justify-center">
+        <button className="rounded-md absolute right-0 p-2 items-center justify-center cursor-pointer">
           <TextSearch color="#1094DE" size={30} />
-        </span>
+        </button>
       </div>
       {!isValueValid && (
         <p className="flex text-red-500 self-start text-sm text-left mt-2">
           Digite apenas números!
         </p>
       )}
-      {/* {filteredSearchs.length > 0 && (
-        <div className="flex flex-col gap-3 mt-5 w-96 max-sm:w-80">
+      {/* {filteredSearchs?.length > 0 && showSelect && (
+        <div className="flex flex-col gap-3 mt-5 w-96 h-60 max-sm:w-80">
           <div className="flex justify-between items-center">
             <h2 className="text-sm text-start font-medium">Histórico:</h2>
             <button
@@ -150,7 +150,7 @@ export function SearchBar({ setProcess, loading }: Props) {
               Limpar histórico
             </button>
           </div>
-          <div className="flex overflow-x-scroll gap-4 ">
+          <div className="flex flex-col overflow-y-scroll gap-4 ">
             {filteredSearchs.map((search, index) => (
               <button
                 key={index}
