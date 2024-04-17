@@ -13,6 +13,8 @@ export function TableProcess({ data }: TableProcessProps) {
         ? "GAB"
         : formattedGroup === "UNIDADE FISCAL"
         ? "UNIDADE EXECUTANTE"
+        : formattedGroup === "GERENCIA CONTRATO"
+        ? "GESTÃO DE CONTRATOS"
         : formattedGroup;
     return groupRename;
   }
