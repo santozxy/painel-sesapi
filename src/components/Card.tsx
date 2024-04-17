@@ -2,14 +2,7 @@
 
 import React from "react";
 import { Detail } from "@services/process/processDTO";
-import {
-  ChevronDownCircle,
-  ChevronDownIcon,
-  ChevronUpCircle,
-  ChevronUpIcon,
-  LogIn,
-  LogOut,
-} from "lucide-react";
+import { ChevronDownIcon, ChevronUpIcon, LogIn, LogOut } from "lucide-react";
 import { CalculatorTimeDuration } from "@utils/compareUtils";
 import { useCollapse } from "react-collapsed";
 
