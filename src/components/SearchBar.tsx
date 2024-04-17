@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TextSearch, Search } from "lucide-react";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+
+import { useCallback, useEffect, useState } from "react";
 
 interface Props {
   setProcess: (process: string) => void;
@@ -42,7 +41,6 @@ export function SearchBar({ setProcess, loading }: Props) {
     const inputValue = e.target.value.replace(/[\s]/g, "").trim();
     const previousValue = search || "";
     const formattedValue = formatProcessNumber(inputValue);
-    // Ver se houve uma adição ou remoção de caracteres
     if (regex.test(inputValue)) {
       setIsValueValid(true);
       if (formattedValue.length > previousValue.length) {
@@ -55,44 +53,39 @@ export function SearchBar({ setProcess, loading }: Props) {
     }
   };
 
-  const saveSearchsStorage = (searchs: string[]) => {
-    const filteredSearchs = searchs.flatMap((search) => search);
-    console.log(filteredSearchs);
-    localStorage.setItem(KEY_SEARCHS, JSON.stringify(filteredSearchs));
-  };
-
-  const removeSearchsStorage = () => {
-    localStorage.removeItem(KEY_SEARCHS);
-    toast.success("Histórico limpo com sucesso!");
-  };
-
-  const getSearchsStorage = () => {
-    const searchs = localStorage.getItem(KEY_SEARCHS);
-    if (searchs) {
-      setLastSearchs(JSON.parse(searchs));
-      return;
+  // Função para salvar a pesquisa no localStorage
+  const saveSearchToStorage = useCallback((search: string) => {
+    const searchHistory = getSearchHistoryFromStorage();
+    if (!searchHistory.includes(search)) {
+      const updatedHistory = [...searchHistory, search];
+      localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
     }
-    return [];
-  };
-
-  const filteredSearchs = lastSearchs.flatMap((search) => search);
-
-  useEffect(() => {
-    getSearchsStorage();
   }, []);
+  // Função para obter o histórico de pesquisa do localStorage
+  function getSearchHistoryFromStorage() {
+    const searchHistory = localStorage.getItem("searchHistory");
+    setLastSearchs(searchHistory ? JSON.parse(searchHistory) : []);
+    return searchHistory ? JSON.parse(searchHistory) : [];
+  }
+  // Função para remover uma pesquisa do localStorage
+  function removeSearchFromStorage() {
+    setLastSearchs([]);
+    localStorage.removeItem("searchHistory");
+  }
+
+  // useEffect(() => {
+  //   getSearchHistoryFromStorage();
+  // }, [currentSearch]);
 
   useEffect(() => {
     if (search.length === 20) {
       setProcess(search);
       setCurrentSearch(search);
-      setLastSearchs((prev) => {
-        prev.unshift(search);
-        return prev;
-      });
-      saveSearchsStorage(lastSearchs);
+      saveSearchToStorage(search);
+      setShowSelect(false);
       setSearch("");
     }
-  }, [search, setProcess, lastSearchs]);
+  }, [search, setProcess, saveSearchToStorage]);
 
   return (
     <div className="flex-col z-10 flex">
@@ -128,28 +121,27 @@ export function SearchBar({ setProcess, loading }: Props) {
           onFocus={() => setShowSelect(true)}
         />
 
-        {/* {filteredSearchs?.length > 0 && showSelect && (
-          <div className="flex flex-col gap-3 mt-5 w-96 h-60 max-sm:w-80 absolute bg-white shadow-md top-10">
-            <div className="flex justify-between items-center">
+        {/* {lastSearchs?.length > 0 && showSelect && (
+          <div className="flex flex-col gap-3 mt-5 w-96 h-60 max-sm:w-80 absolute rounded-md bg-white shadow-md top-8">
+            <div className="flex justify-between items-center px-2">
               <h2 className="text-sm text-start font-medium">Histórico:</h2>
               <button
                 onClick={() => {
-                  setLastSearchs([]);
-                  removeSearchsStorage();
+                  removeSearchFromStorage();
                 }}
                 className="text-sm text-red-500 hover:text-red-700 font-medium"
               >
                 Limpar histórico
               </button>
             </div>
-            <div className="flex flex-col justify-center items-center overflow-y-scroll gap-1 ">
-              {filteredSearchs.map((search, index) => (
+            <div className="flex flex-col  overflow-y-scroll gap-1 ">
+              {lastSearchs.map((search, index) => (
                 <button
                   key={index}
-                  className="p-2 w-full border-b-2 rounded-md border-primary bg-primary round hover:bg-blue-400"
+                  className="p-2 w-full rounded-sm border-primary  hover:bg-blue-400"
                   onClick={() => setSearch(search)}
                 >
-                  <p className="text-terciary-light hover:bg-blue-400 text-sm  font-medium">
+                  <p className="text-terciary-dark text-left hover:bg-blue-400 text-sm font-medium">
                     {search}
                   </p>
                 </button>
