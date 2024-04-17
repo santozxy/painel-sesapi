@@ -1,10 +1,4 @@
-import {
-  differenceInDays,
-  differenceInHours,
-  differenceInMinutes,
-  differenceInSeconds,
-  parse,
-} from "date-fns";
+import { differenceInDays, differenceInHours, differenceInMinutes, differenceInSeconds, parse } from "date-fns";
 
 export function CalculatorTimeDuration(start: string, end: string) {
   const dataInicio = parse(start, "dd/MM/yyyy HH:mm:ss", new Date());
@@ -22,7 +16,7 @@ export function CalculatorTimeDuration(start: string, end: string) {
     segundos > 0 ? `${segundos} Segundo(s)` : "0 Segundo(s)";
   const duration = `${differenceDays} ${differenceHours} ${differenceMinutes} ${differenceSeconds}`;
 
-  const limitDate = dias <= 2 
+  const limitDate = dias <= 2;
 
-  return { duration,limitDate };
+  return { duration, limitDate };
 }
