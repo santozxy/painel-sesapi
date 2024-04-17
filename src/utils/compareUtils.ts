@@ -3,7 +3,6 @@ import { differenceInDays, differenceInHours, differenceInMinutes, differenceInS
 export function CalculatorTimeDuration(start: string, end: string) {
   const dataInicio = parse(start, "dd/MM/yyyy HH:mm:ss", new Date());
   const dataFim = parse(end, "dd/MM/yyyy HH:mm:ss", new Date());
-
   const dias = differenceInDays(dataFim, dataInicio);
   const horas = differenceInHours(dataFim, dataInicio) % 24;
   const minutos = differenceInMinutes(dataFim, dataInicio) % 60;
