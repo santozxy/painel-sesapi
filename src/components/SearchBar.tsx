@@ -53,7 +53,6 @@ export function SearchBar({ setProcess, loading }: Props) {
     if (search.length === 20) {
       setProcess(search);
       setCurrentSearch(search);
-      setSearch("00012.");
     }
   }, [search, setProcess]);
 
