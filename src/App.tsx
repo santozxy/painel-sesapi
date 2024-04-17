@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import "react-toastify/dist/ReactToastify.css";
 import { useCallback, useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -9,8 +7,8 @@ import { SearchBar } from "./components/SearchBar";
 import { Detail, ProcessData } from "./services/process/processDTO";
 import { searchProcess } from "./services/process/processService";
 import { Loading } from "@components/Loading";
-import { getDataDetailed, getDataGrouped } from "@utils/FiltersProcess";
-import { CardListResume } from "@components/CardListResume";
+import { getDataDetailed, getDataGrouped } from "@utils/filtersProcess";
+import { ListCards } from "@components/ListCards";
 import { BoxDurationProcess } from "@components/BoxDurationProcess";
 import { TableProcess } from "@components/TableProcess";
 
@@ -20,6 +18,7 @@ function App() {
   const [data, setData] = useState<ProcessData>();
   const [dataGrouped, setDataGrouped] = useState<Detail[]>([]);
   const [dataDetailed, setDataDetailed] = useState<Detail[]>([]);
+  const [dataFilterOthers, setDataFilterOthers] = useState<Detail[]>([]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -28,11 +27,15 @@ function App() {
       const response = await searchProcess(processStr);
       if (response) {
         const dataGrouped = getDataGrouped(response.grouped);
-        // const filteredGroup = dataGrouped.filter(
-        //   (data) => data.group !== "OUTROS"
-        // );
         const dataDetailed = getDataDetailed(response.detailed);
-        setDataGrouped(dataGrouped);
+        const filteredGroup = dataGrouped.filter(
+          (data) => data.group !== "OUTROS"
+        );
+        const filteredOthers = dataGrouped.filter(
+          (data) => data.group === "OUTROS"
+        );
+        setDataGrouped(filteredGroup);
+        setDataFilterOthers(filteredOthers);
         setDataDetailed(dataDetailed);
         setData(response);
         setProcess("");
@@ -41,6 +44,7 @@ function App() {
     } catch (error) {
       setData(undefined);
       setDataGrouped([]);
+      setDataFilterOthers([]);
       setDataDetailed([]);
       setProcess("");
       setLoading(false);
@@ -56,9 +60,7 @@ function App() {
     if (process.length === 20) {
       fetchData();
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [process]);
+  }, [fetchData, process]);
 
   return (
     <div className="flex-col flex gap-10 pb-20">
@@ -71,20 +73,13 @@ function App() {
       {loading ? (
         <Loading />
       ) : (
-        <div className="flex flex-col justify-center items-center">
-          <div className="flex gap-2 justify-center items-center max-sm:flex-col">
-            <h1 className="text-xl text-center font-bold mt-5 max-sm:text-base">
-              {data?.typeDescription
-                ? `Tipo de Processo: `
-                : "Pesquise por um processo"}
-            </h1>
-            <h1 className="text-xl text-center font-medium mt-5 max-sm:text-base">
-              {data?.typeDescription}
-            </h1>
-          </div>
-          <div className="mt-4 mb-8">
-            <CardListResume data={dataGrouped} />
-          </div>
+        <div className="flex flex-col justify-center items-center mt-5">
+          {dataGrouped.length > 0 && (
+            <ListCards data={dataGrouped} type={data?.typeDescription} />
+          )}
+          {dataFilterOthers.length > 0 && (
+            <ListCards data={dataFilterOthers} type={"OUTROS"} />
+          )}
           <div className="mx-5 mb-10">
             {dataDetailed && dataDetailed.length > 0 && (
               <TableProcess data={dataDetailed} />
