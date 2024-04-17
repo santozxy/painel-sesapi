@@ -41,7 +41,13 @@ export function Card({ detail, cardColor }: CardProps) {
         {...getToggleProps()}
       >
         <p className="font-semibold text-center text-terciary-dark">
-          {formattedGroup === "PAGAMENTO" ? "FUNSAUDE PAG" : formattedGroup}
+          {formattedGroup === "PAGAMENTO"
+            ? "FUNSAUDE"
+            : formattedGroup === "GABINETE"
+            ? "GAB"
+            : formattedGroup === "UNIDADE FISCAL"
+            ? "UNIDADE EXECUTANTE"
+            : formattedGroup}
         </p>
         <div className="absolute right-2">
           {isExpanded ? (

@@ -75,10 +75,10 @@ function App() {
       ) : (
         <div className="flex flex-col justify-center items-center mt-5">
           {dataGrouped.length > 0 && (
-            <ListCards data={dataGrouped} type={data?.typeDescription} />
+            <ListCards data={dataGrouped} type={"Tramitação Dentro do Fluxo"} />
           )}
           {dataFilterOthers.length > 0 && (
-            <ListCards data={dataFilterOthers} type={"OUTROS"} />
+            <ListCards data={dataFilterOthers} type={"Tramitação Fora do Fluxo"} />
           )}
           <div className="mx-5 mb-10">
             {dataDetailed && dataDetailed.length > 0 && (
