@@ -1,5 +1,5 @@
-import LogoSei from "../assets/logo-sei.png";
-import LogoGovPI from "../assets/logo-gov-pi.png";
+import LogoSei from "@assets/logo-sei.png";
+import LogoGovPI from "@assets/logo-gov-pi.png";
 
 export function Header() {
   return (
