@@ -1,4 +1,5 @@
 import { copyToClipboard } from "@utils/clipboard";
+import { formatProcessNumber } from "@utils/formatting";
 import { Copy, SearchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -7,29 +8,13 @@ interface Props {
   loading: boolean;
 }
 
-function formatProcessNumber(input: string) {
-  // Formatar o número parcialmente conforme o usuário digita
-  const numericValue = input.replace(/[\D\s]/g, "");
-  let formattedValue = "";
-  if (numericValue.length >= 5) {
-    formattedValue += numericValue.slice(0, 5) + ".";
-  }
-  if (numericValue.length >= 11) {
-    formattedValue += numericValue.slice(5, 11) + "/";
-  }
-  if (numericValue.length >= 15) {
-    formattedValue += numericValue.slice(11, 15) + "-";
-  }
-  if (numericValue.length >= 17) {
-    formattedValue += numericValue.slice(15, 17);
-  }
-  return formattedValue;
-}
 const regex = /^(\d{5})?\.?(\d{6})?\/?(\d{0,4})?-?(\d{0,2})$/;
 export function SearchBar({ setProcess, loading }: Props) {
   const [search, setSearch] = useState<string>("00012.");
   const [currentSearch, setCurrentSearch] = useState<string>("");
   const [isValueValid, setIsValueValid] = useState<boolean>(true);
+  const [previousSearches, setPreviousSearches] = useState<string[]>([]);
+
   const handleValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.replace(/[\s]/g, "").trim();
     const previousValue = search || "";
@@ -47,17 +32,34 @@ export function SearchBar({ setProcess, loading }: Props) {
   };
 
   useEffect(() => {
+    // Obter pesquisas anteriores do localStorage
+    const storedSearches = localStorage.getItem("previousSearches");
+    if (storedSearches) {
+      setPreviousSearches(JSON.parse(storedSearches));
+    }
+  }, []);
+
+  useEffect(() => {
     if (search.length === 20) {
       setProcess(search);
       setCurrentSearch(search);
+      if (!previousSearches.includes(search)) {
+        // Adicionar pesquisa ao início da lista no localStorage e manter apenas as últimas 5
+        const updatedSearches = [...previousSearches, search].slice(-5);
+        setPreviousSearches(updatedSearches);
+        localStorage.setItem(
+          "previousSearches",
+          JSON.stringify(updatedSearches)
+        );
+      }
       setSearch("");
     }
-  }, [search, setProcess]);
+  }, [search, setProcess, previousSearches]);
 
   return (
     <div className="flex-col z-10 flex">
       {currentSearch ? (
-        <div className="p-2 flex gap-3 w-96 max-sm:w-[22rem] bg-primary rounded-t-md">
+        <div className="p-2 flex justify-between gap-3 w-96 max-sm:w-[22rem] bg-primary rounded-t-md">
           <p
             className="text-terciary-light text-sm max-sm:text-[13px] font-medium"
             title="Processo pesquisado"
@@ -88,6 +90,7 @@ export function SearchBar({ setProcess, loading }: Props) {
         } shadow-md max-sm:w-[22rem]`}
       >
         <input
+          list="previousSearches"
           maxLength={20}
           value={search}
           onChange={handleValidation}
@@ -97,6 +100,11 @@ export function SearchBar({ setProcess, loading }: Props) {
           id="protocol"
           className="w-96 rounded-md p-2 text-terciary-dark outline-none placeholder:text-gray-400  max-sm:text-sm sm:leading-6"
         />
+        <datalist id="previousSearches">
+          {previousSearches.map((item, index) => (
+            <option key={index} value={item}></option>
+          ))}
+        </datalist>
       </div>
       {!isValueValid && (
         <p className="flex text-red-500 self-start text-sm text-left mt-2">
