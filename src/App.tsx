@@ -38,6 +38,10 @@ function App() {
         setDataDetailed(dataDetailed);
         setData(response);
         setProcess("");
+        window.scrollTo({
+          top: 150,
+          behavior: "smooth",
+        });
       }
       setLoading(false);
     } catch (error) {
