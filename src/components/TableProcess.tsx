@@ -5,14 +5,13 @@ interface TableProcessProps {
 }
 
 export function TableProcess({ data }: TableProcessProps) {
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.4 }}
       viewport={{ once: true }}
-      className="overflow-x-auto rounded-lg max-sm:w-96 max-sm:overflow-x-scroll"
+      className="overflow-x-auto rounded-lg max-sm:w-[22rem] max-sm:overflow-x-scroll"
     >
       <table className="min-w-full bg-white shadow-md rounded-lg">
         <thead>
