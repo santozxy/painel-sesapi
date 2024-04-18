@@ -1,13 +1,10 @@
-import { Copy, Timer } from "lucide-react";
+import { Timer } from "lucide-react";
 import React, { useState } from "react";
 import Draggable from "react-draggable";
-import { toast } from "react-toastify";
-export function BoxDurationProcess({ duration = "", process = "" }) {
+
+export function BoxDurationProcess({ duration = ""}) {
   const [isDragging, setIsDragging] = useState(false);
-  function copyToClipboard() {
-    navigator.clipboard.writeText(process);
-    toast.success(`Processo foi copiado!\n${process}`);
-  }
+
   return (
     <Draggable
       defaultClassName="max-sm:w-full"
@@ -21,18 +18,12 @@ export function BoxDurationProcess({ duration = "", process = "" }) {
             isDragging ? "shadow-primary" : ""
           }`}
         >
-          <div className="bg-primary flex gap-3 items-center justify-between p-2 border-b-2 rounded-t-md">
+          <div className="bg-primary flex gap-3 items-center justify-center p-2 border-b-2 rounded-t-md">
             <Timer size={22} color="#f5f5f5" />
             <h2 className="font-semibold text-center max-sm:text-sm text-terciary-light">
-              {process}
+              Duração Total
             </h2>
-            <button
-              className="cursor-pointer text-terciary-light z-50"
-              title="Copiar processo"
-              onClick={copyToClipboard}
-            >
-              <Copy size={22} />
-            </button>
+            
           </div>
 
           <h2 className="font-medium p-2 max-sm:text-sm">{duration}</h2>
