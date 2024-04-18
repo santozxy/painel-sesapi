@@ -1,3 +1,5 @@
+import { copyToClipboard } from "@utils/clipboard";
+import { Copy, SearchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -6,8 +8,8 @@ interface Props {
 }
 
 function formatProcessNumber(input: string) {
-  const numericValue = input.replace(/[\D\s]/g, "");
   // Formatar o número parcialmente conforme o usuário digita
+  const numericValue = input.replace(/[\D\s]/g, "");
   let formattedValue = "";
   if (numericValue.length >= 5) {
     formattedValue += numericValue.slice(0, 5) + ".";
@@ -28,7 +30,6 @@ export function SearchBar({ setProcess, loading }: Props) {
   const [search, setSearch] = useState<string>("00012.");
   const [currentSearch, setCurrentSearch] = useState<string>("");
   const [isValueValid, setIsValueValid] = useState<boolean>(true);
-
   const handleValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.replace(/[\s]/g, "").trim();
     const previousValue = search || "";
@@ -55,23 +56,34 @@ export function SearchBar({ setProcess, loading }: Props) {
 
   return (
     <div className="flex-col z-10 flex">
-      {currentSearch && (
-        <div className="flex flex-col gap-3 w-96 max-sm:w-80">
+      {currentSearch ? (
+        <div className="p-2 flex gap-3 w-96 max-sm:w-80 bg-primary rounded-t-md">
           <p
-            className="p-2  rounded-tr-md rounded-tl-md bg-primary text-terciary-light text-sm max-sm:text-[13px] font-medium"
+            className="text-terciary-light text-sm max-sm:text-[13px] font-medium"
             title="Processo pesquisado"
           >
             Resultado da pesquisa:{"  "}
             {currentSearch}
           </p>
+          <button
+            className="cursor-pointer text-terciary-light hover:text-[#d4d4d4]"
+            title="Copiar processo"
+            onClick={() => copyToClipboard(currentSearch, "Processo copiado!")}
+          >
+            <Copy size={20} />
+          </button>
+        </div>
+      ) : (
+        <div className="p-2 flex justify-between items-center gap-3 w-96 max-sm:w-80 bg-primary rounded-t-md">
+          <p className=" text-terciary-light text-sm max-sm:text-[13px] font-medium">
+            Pesquise por um processo
+          </p>
+          <SearchIcon size={20} color="#f5f5f5" />
         </div>
       )}
+
       <div
-        className={`relative w-96 flex justify-center items-center ${
-          currentSearch
-            ? "border-top-0 border-b-2 border-x-2 rounded-br-md rounded-bl-md"
-            : "border-2 rounded-md"
-        }   ${
+        className={`relative w-96 flex justify-center items-center border-top-0 border-b-2 border-x-2 rounded-br-md rounded-bl-md ${
           isValueValid ? "border-border" : "border-red-500"
         } shadow-md max-sm:w-80`}
       >
