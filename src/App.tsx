@@ -65,7 +65,7 @@ function App() {
     <div className="flex-col flex gap-10 pb-20">
       <Header />
       <ToastContainer pauseOnHover={false} />
-      <BoxDurationProcess duration={data?.duration} process={data?.protocolo} />
+      <BoxDurationProcess duration={data?.duration} />
       <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20 max-sm:mt-60">
         <SearchBar loading={loading} setProcess={setProcess} />
       </div>
@@ -74,10 +74,19 @@ function App() {
       ) : (
         <div className="flex flex-col justify-center items-center mt-5">
           {dataGrouped.length > 0 && (
-            <ListCards data={dataGrouped} type={"Tramitação Dentro do Fluxo"} />
+            <ListCards
+              data={dataGrouped}
+              type="Tramitação Dentro do Fluxo"
+              typeDescription={data?.typeDescription}
+              duration={data?.mainDuration}
+            />
           )}
           {dataFilterOthers.length > 0 && (
-            <ListCards data={dataFilterOthers} type={"Tramitação Fora do Fluxo"} />
+            <ListCards
+              data={dataFilterOthers}
+              type={"Tramitação Fora do Fluxo"}
+              duration={data?.othersDuration}
+            />
           )}
           <div className="mx-5 mb-10">
             {dataDetailed && dataDetailed.length > 0 && (
