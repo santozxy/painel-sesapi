@@ -1,4 +1,5 @@
 import { Detail } from "@services/process/processDTO";
+import { motion } from "framer-motion";
 interface TableProcessProps {
   data: Detail[];
 }
@@ -20,7 +21,13 @@ export function TableProcess({ data }: TableProcessProps) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg max-sm:w-96 max-sm:overflow-x-scroll">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.5}}
+      viewport={{ once: true }}
+      className="overflow-x-auto rounded-lg max-sm:w-96 max-sm:overflow-x-scroll"
+    >
       <table className="min-w-full bg-white shadow-md rounded-lg">
         <thead>
           <tr className="bg-primary">
@@ -61,6 +68,6 @@ export function TableProcess({ data }: TableProcessProps) {
           ))}
         </tbody>
       </table>
-    </div>
+    </motion.div>
   );
 }

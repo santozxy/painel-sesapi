@@ -1,6 +1,7 @@
 import { Card } from "./Card";
 import { Detail } from "@services/process/processDTO";
 import { Separator } from "./Separator";
+import { motion } from "framer-motion";
 
 interface CardListProps {
   data: Detail[];
@@ -71,11 +72,19 @@ export function ListCards({
       </div>
       <div className="flex flex-wrap mt-5 gap-6 justify-center items-center">
         {data.map((detail, index) => (
-          <Card
-            key={`${detail.group}-${index}`}
-            detail={detail}
-            cardColor={colors[index]}
-          />
+          <motion.div
+            key={`${detail.unidDescription}-${index}`}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+            viewport={{ once: true }}
+          >
+            <Card
+              key={`${detail.unidDescription}-${index}`}
+              detail={detail}
+              cardColor={colors[index]}
+            />
+          </motion.div>
         ))}
       </div>
       {data && <Separator />}
