@@ -4,6 +4,8 @@ export interface ProcessData {
   startDate: string;
   endDate: string;
   duration: string;
+  mainDuration: string;
+  othersDuration: string;
   days: number;
   hours: number;
   type: string;
@@ -37,4 +39,5 @@ export interface Detail {
   end: string;
   hours: number;
   days: number;
+  outOfTime: boolean;
 }
