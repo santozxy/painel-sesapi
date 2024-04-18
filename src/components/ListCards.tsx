@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Card } from "./Card";
 import { Detail } from "@services/process/processDTO";
 import { Separator } from "./Separator";
@@ -6,6 +5,8 @@ import { Separator } from "./Separator";
 interface CardListProps {
   data: Detail[];
   type?: string;
+  typeDescription?: string;
+  duration?: string;
 }
 
 const colors = [
@@ -43,16 +44,31 @@ const colors = [
   "bg-cyan-400",
   "bg-gray-400",
 ];
-export function ListCards({ data, type }: CardListProps) {
+export function ListCards({
+  data,
+  type,
+  typeDescription,
+  duration,
+}: CardListProps) {
   return (
     <div className="flex flex-col gap-2 mx-5">
+      {typeDescription && (
+        <h1 className="text-xl text-center font-bold text-terciary-dark max-sm:text-sm py-5 border-b">
+          {typeDescription}
+        </h1>
+      )}
       {type && (
-        <div className="flex gap-2 justify-center items-center max-sm:flex-col">
-          <h1 className="text-xl text-center font-bold  max-sm:text-base">
+        <div className="flex flex-col gap-4 justify-center items-center max-sm:flex-col mt-5">
+          <h1 className="text-xl text-center text-terciary-dark font-medium max-sm:text-sm">
             {type}
           </h1>
         </div>
       )}
+      <div className="flex mt-5 justify-center items-center">
+        <h1 className="text-lg text-primary text-left font-medium max-sm:text-sm border rounded-md p-2">
+          Duração: {duration}
+        </h1>
+      </div>
       <div className="flex flex-wrap mt-5 gap-6 justify-center items-center">
         {data.map((detail, index) => (
           <Card
