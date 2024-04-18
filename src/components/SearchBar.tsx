@@ -57,7 +57,7 @@ export function SearchBar({ setProcess, loading }: Props) {
   return (
     <div className="flex-col z-10 flex">
       {currentSearch ? (
-        <div className="p-2 flex gap-3 w-96 max-sm:w-80 bg-primary rounded-t-md">
+        <div className="p-2 flex gap-3 w-96 max-sm:w-[22rem] bg-primary rounded-t-md">
           <p
             className="text-terciary-light text-sm max-sm:text-[13px] font-medium"
             title="Processo pesquisado"
@@ -74,7 +74,7 @@ export function SearchBar({ setProcess, loading }: Props) {
           </button>
         </div>
       ) : (
-        <div className="p-2 flex justify-between items-center gap-3 w-96 max-sm:w-80 bg-primary rounded-t-md">
+        <div className="p-2 flex justify-between items-center gap-3 w-96 max-sm:w-[22rem] bg-primary rounded-t-md">
           <p className=" text-terciary-light text-sm max-sm:text-[13px] font-medium">
             Pesquise por um processo
           </p>
@@ -85,7 +85,7 @@ export function SearchBar({ setProcess, loading }: Props) {
       <div
         className={`relative w-96 flex justify-center items-center border-top-0 border-b-2 border-x-2 rounded-br-md rounded-bl-md ${
           isValueValid ? "border-border" : "border-red-500"
-        } shadow-md max-sm:w-80`}
+        } shadow-md max-sm:w-[22rem]`}
       >
         <input
           maxLength={20}

@@ -20,7 +20,7 @@ export function TableProcess({ data }: TableProcessProps) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg">
+    <div className="overflow-x-auto rounded-lg max-sm:w-96 max-sm:overflow-x-scroll">
       <table className="min-w-full bg-white shadow-md rounded-lg">
         <thead>
           <tr className="bg-primary">
