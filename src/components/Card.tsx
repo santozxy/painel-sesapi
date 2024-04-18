@@ -1,7 +1,7 @@
 import React from "react";
 import { Detail } from "@services/process/processDTO";
 import { ChevronDownIcon, ChevronUpIcon, LogIn, LogOut } from "lucide-react";
-import { CalculatorTimeDuration } from "@utils/compareUtils";
+import { CalculatorTimeDuration } from "@utils/dateManipulation";
 import { useCollapse } from "react-collapsed";
 
 interface CardProps {
@@ -11,13 +11,12 @@ interface CardProps {
 
 export function Card({ detail, cardColor }: CardProps) {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
-  const { start, unidDescription, group, end } = detail;
+  const { start, unidDescription, group, end, outOfTime } = detail;
   const formattedGroup =
     group === "OUTROS" ? group : group.replace(/[_]|[\u0300-\u036f]/g, " ");
   const formattedDuration = CalculatorTimeDuration(start, end);
   const duration = formattedDuration.duration;
-  const limitDate = formattedDuration.limitDate;
-  const verifyColorTerm = limitDate ? "text-[#027651]" : "text-red-500";
+  const verifyColorTerm = outOfTime ? "text-red-500" : "text-[#027651]";
   const colorOthers = group === "OUTROS" ? "bg-gray-300" : cardColor;
   const colorIcon = "#2f2f2f";
 
@@ -28,7 +27,7 @@ export function Card({ detail, cardColor }: CardProps) {
       }`}
     >
       <div
-        className={`px-2 py-3 flex items-center justify-center relative ${colorOthers} rounded-t-md cursor-pointer`}
+        className={`px-2 bg-opacity-75 hover:bg-opacity-100 py-3 flex items-center justify-center relative ${colorOthers} rounded-t-md cursor-pointer`}
         {...getToggleProps()}
       >
         <p className="font-semibold text-center text-terciary-dark">
