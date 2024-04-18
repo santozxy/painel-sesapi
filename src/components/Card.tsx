@@ -31,15 +31,7 @@ export function Card({ detail, cardColor }: CardProps) {
         {...getToggleProps()}
       >
         <p className="font-semibold text-center text-terciary-dark">
-          {formattedGroup === "PAGAMENTO"
-            ? "FUNSAUDE"
-            : formattedGroup === "GABINETE"
-            ? "GAB"
-            : formattedGroup === "UNIDADE FISCAL"
-            ? "UNIDADE EXECUTANTE"
-            : formattedGroup === "GERENCIA CONTRATO"
-            ? "GESTÃO DE CONTRATOS"
-            : formattedGroup}
+          {formattedGroup}
         </p>
         <div className="absolute right-2">
           {isExpanded ? (

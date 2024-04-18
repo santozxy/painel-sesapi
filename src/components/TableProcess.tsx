@@ -5,26 +5,12 @@ interface TableProcessProps {
 }
 
 export function TableProcess({ data }: TableProcessProps) {
-  function renameGroup(group: string) {
-    const formattedGroup = group.replace(/_/g, " ");
-    const groupRename =
-      formattedGroup === "PAGAMENTO"
-        ? "FUNSAUDE"
-        : formattedGroup === "GABINETE"
-        ? "GAB"
-        : formattedGroup === "UNIDADE FISCAL"
-        ? "UNIDADE EXECUTANTE"
-        : formattedGroup === "GERENCIA CONTRATO"
-        ? "GESTÃO DE CONTRATOS"
-        : formattedGroup;
-    return groupRename;
-  }
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: 0.5}}
+      transition={{ duration: 0.3, delay: 0.4 }}
       viewport={{ once: true }}
       className="overflow-x-auto rounded-lg max-sm:w-96 max-sm:overflow-x-scroll"
     >
@@ -56,7 +42,9 @@ export function TableProcess({ data }: TableProcessProps) {
               </td>
 
               <td className="border border-gray-200 py-4 px-6 text-center">
-                {item.group === "OUTROS" ? item.group : renameGroup(item.group)}
+                {item.group === "OUTROS"
+                  ? item.group
+                  : item.group.replace(/_/g, " ")}
               </td>
               <td className="border border-gray-200 py-4 px-6 text-center">
                 {item.start}
