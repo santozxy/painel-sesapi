@@ -64,7 +64,7 @@ export function SearchBar({ setProcess, loading }: Props) {
             className="text-terciary-light text-sm max-sm:text-[13px] font-medium"
             title="Processo pesquisado"
           >
-            Resultado da pesquisa:{"  "}
+            <strong>Pesquisa: </strong>
             {currentSearch}
           </p>
           <button

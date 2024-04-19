@@ -76,7 +76,7 @@ export function ListCards({
             key={`${detail.unidDescription}-${index}`}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.05 }}
+            transition={{ duration: 0.3, delay: index * 0.01 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.04, transition: { duration: 0.3 } }}
           >
