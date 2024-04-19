@@ -7,6 +7,12 @@ import {
 } from "date-fns";
 
 export function CalculatorTimeDuration(start: string, end: string) {
+  if (!start || !end) {
+    return {
+      duration: "0 Dia(s) 0 Hora(s) 0 Minuto(s) 0 Segundo(s)",
+      limitDate: false,
+    };
+  }
   const initialDate = parse(start, "dd/MM/yyyy HH:mm:ss", new Date());
   const finalDate = parse(end, "dd/MM/yyyy HH:mm:ss", new Date());
   const days = differenceInDays(finalDate, initialDate);
@@ -22,4 +28,15 @@ export function CalculatorTimeDuration(start: string, end: string) {
   const duration = `${differenceDays} ${differenceHours} ${differenceMinutes} ${differenceSeconds}`;
   const limitDate = days <= 2;
   return { duration, limitDate };
+}
+
+export function ConvertSecondsDate(seconds: number) {
+  if (seconds < 0) {
+    return "0 Dia(s) 0 Hora(s) 0 Minuto(s) 0 Segundo(s)";
+  }
+  const days = Math.floor(seconds / (3600 * 24));
+  const hours = Math.floor((seconds % (3600 * 24)) / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secondsLeft = seconds % 60;
+  return `${days} Dia(s) ${hours} Hora(s) ${minutes} Minuto(s) ${secondsLeft} Segundo(s)`;
 }
