@@ -2,23 +2,24 @@ import "react-toastify/dist/ReactToastify.css";
 import { useMemo, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { isAxiosError } from "axios";
-import { Header } from "./components/Header";
-import { SearchBar } from "./components/SearchBar";
 import { Detail } from "./services/process/processDTO";
 import { searchProcess } from "./services/process/processService";
-import { Loading } from "@components/Loading";
-import { getDataDetailed, getDataGrouped } from "@utils/filtersProcess";
-import { ListCards } from "@components/ListCards";
-import { BoxDurationProcess } from "@components/BoxDurationProcess";
-import { TableProcess } from "@components/TableProcess";
+import { getDataDetailed, getDataGrouped } from "@utils";
+import {
+  SearchBar,
+  Header,
+  BoxDurationProcess,
+  Loading,
+  ListCards,
+  TableProcess,
+} from "@components";
+
 import { useQuery } from "@tanstack/react-query";
 function App() {
   const [process, setProcess] = useState("");
-
   const [dataGrouped, setDataGrouped] = useState<Detail[]>([]);
   const [dataDetailed, setDataDetailed] = useState<Detail[]>([]);
   const [dataFilterOthers, setDataFilterOthers] = useState<Detail[]>([]);
-
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["searchProcess", process],
     queryFn: () => searchProcess(process.replace(/[^\w\s]/g, "")),
