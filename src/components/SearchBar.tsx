@@ -1,5 +1,5 @@
-import { copyToClipboard } from "@utils/clipboard";
-import { formatProcessNumber } from "@utils/formatting";
+import { copyToClipboard } from "@utils";
+import { formatProcessNumber } from "@utils";
 import { Copy, SearchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 

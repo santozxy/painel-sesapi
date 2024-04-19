@@ -1,10 +1,7 @@
 import React from "react";
 import { Detail } from "@services/process/processDTO";
 import { ChevronDownIcon, ChevronUpIcon, LogIn, LogOut } from "lucide-react";
-import {
-  CalculatorTimeDuration,
-  ConvertSecondsDate,
-} from "@utils/dateManipulation";
+import { CalculatorTimeDuration, ConvertSecondsDate } from "@utils";
 import { useCollapse } from "react-collapsed";
 
 interface CardProps {
