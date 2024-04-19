@@ -49,6 +49,7 @@ export function Painel() {
       setDataGrouped(filteredGroup);
       setDataFilterOthers(filteredOthers);
       setDataDetailed(dataDetailed);
+      return;
     } else {
       setDataGrouped([]);
       setDataFilterOthers([]);
