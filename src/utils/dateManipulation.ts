@@ -32,7 +32,7 @@ export function CalculatorTimeDuration(start: string, end: string) {
 
 export function ConvertSecondsDate(seconds: number) {
   if (seconds === 0) {
-    return "0 Dia(s) 0 Hora(s) 0 Minuto(s) 0 Segundo(s)";
+    return "O processo não entrou nesse grupo";
   }
   const days = Math.floor(seconds / (3600 * 24));
   const hours = Math.floor((seconds % (3600 * 24)) / 3600);

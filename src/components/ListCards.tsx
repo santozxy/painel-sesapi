@@ -67,7 +67,8 @@ export function ListCards({
       )}
       <div className="flex mt-5 justify-center items-center">
         <h1 className="text-lg text-primary text-left font-medium max-sm:text-sm border rounded-md p-2">
-          Duração: {duration}
+          Duração:{" "}
+          {duration ? duration : "Processo não seguiu o fluxo esperado"}
         </h1>
       </div>
       <div className="flex flex-wrap mt-5 gap-6 justify-center items-center">

@@ -22,8 +22,8 @@ export function Card({ detail, cardColor }: CardProps) {
   const formattedDuration = ConvertSecondsDate(seconds);
   console.log("Diferença entre start e end", convertData.duration);
   console.log("Duração em segundos", formattedDuration);
-  const duration = convertData.duration;
-  const verifyColorTerm = outOfTime ? "text-red-500" : "text-[#027651]";
+  const duration = formattedDuration;
+  const verifyColorTerm = outOfTime ? "text-red-500" : start ? "text-green-700" : "text-terciary-dark";
   const colorOthers = group === "OUTROS" ? "bg-gray-300" : cardColor;
   const colorIcon = "#2f2f2f";
 
@@ -50,21 +50,21 @@ export function Card({ detail, cardColor }: CardProps) {
       </div>
       <div className="border-b-2 p-1">
         <p className="text-sm font-medium text-center text-terciary-dark">
-          {unidDescription ?? "Sem dados"}
+          {unidDescription ? unidDescription: "Nenhuma unidade"}
         </p>
       </div>
       <div className="flex flex-col gap-2" {...getCollapseProps()}>
         <div className="flex justify-center p-1 gap-2 border-b-2">
           <LogIn size={20} />
           <p className="text-sm font-medium text-center text-terciary-dark">
-            {start ? start : "Sem dados"}
+            {start ? start : "Não possui"}
           </p>
         </div>
 
         <div className="flex justify-center p-1 gap-2 border-b-2">
           <LogOut size={20} />
           <p className="text-sm font-medium text-center text-terciary-dark">
-            {end ? end : "Sem dados"}
+            {end ? end : "Não possui"}
           </p>
         </div>
       </div>
