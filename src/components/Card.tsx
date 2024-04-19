@@ -1,7 +1,10 @@
 import React from "react";
 import { Detail } from "@services/process/processDTO";
 import { ChevronDownIcon, ChevronUpIcon, LogIn, LogOut } from "lucide-react";
-import { CalculatorTimeDuration } from "@utils/dateManipulation";
+import {
+  CalculatorTimeDuration,
+  ConvertSecondsDate,
+} from "@utils/dateManipulation";
 import { useCollapse } from "react-collapsed";
 
 interface CardProps {
@@ -11,11 +14,18 @@ interface CardProps {
 
 export function Card({ detail, cardColor }: CardProps) {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
-  const { start, unidDescription, group, end, outOfTime } = detail;
+  const { start, unidDescription, group, end, outOfTime, seconds } = detail;
   const formattedGroup =
-    group === "OUTROS" ? group : group.replace(/[_]|[\u0300-\u036f]/g, " ");
-  const formattedDuration = CalculatorTimeDuration(start, end);
-  const duration = formattedDuration.duration;
+    group != ""
+      ? group === "OUTROS"
+        ? group
+        : group.replace(/[_]|[\u0300-\u036f]/g, " ")
+      : group;
+  const convertData = CalculatorTimeDuration(start, end);
+  const formattedDuration = ConvertSecondsDate(seconds);
+  console.log("Diferença entre start e end", convertData.duration);
+  console.log("Duração em segundos", formattedDuration);
+  const duration = convertData.duration;
   const verifyColorTerm = outOfTime ? "text-red-500" : "text-[#027651]";
   const colorOthers = group === "OUTROS" ? "bg-gray-300" : cardColor;
   const colorIcon = "#2f2f2f";
@@ -43,21 +53,21 @@ export function Card({ detail, cardColor }: CardProps) {
       </div>
       <div className="border-b-2 p-1">
         <p className="text-sm font-medium text-center text-terciary-dark">
-          {unidDescription}
+          {unidDescription ?? "Sem dados"}
         </p>
       </div>
       <div className="flex flex-col gap-2" {...getCollapseProps()}>
         <div className="flex justify-center p-1 gap-2 border-b-2">
           <LogIn size={20} />
           <p className="text-sm font-medium text-center text-terciary-dark">
-            {start}
+            {start ? start : "Sem dados"}
           </p>
         </div>
 
         <div className="flex justify-center p-1 gap-2 border-b-2">
           <LogOut size={20} />
           <p className="text-sm font-medium text-center text-terciary-dark">
-            {end}
+            {end ? end : "Sem dados"}
           </p>
         </div>
       </div>
