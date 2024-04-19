@@ -62,6 +62,7 @@ export function Painel() {
       <Header />
       <ToastContainer pauseOnHover={false} />
       <BoxDurationProcess duration={data?.duration} />
+      {/* <ThemeSwitcher /> */}
       <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20 max-sm:mt-60">
         <SearchBar loading={isLoading} setProcess={setProcess} />
       </div>

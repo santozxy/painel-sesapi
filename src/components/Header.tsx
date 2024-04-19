@@ -7,25 +7,31 @@ export function Header() {
       <div className="flex gap-5 justify-between items-center">
         <img
           src={LogoSei}
-          className=" w-20 h-10"
+          className="object-contain"
           alt="Logo do SEI"
           loading="lazy"
-          width={40}
-          height={80}
+          width={"80px"}
+          height={"80px"}
         />
         <img
           alt="Logo do Governo do Piauí"
           src={LogoGovPI}
-          className="w-24 h-16 hidden max-sm:block"
+          className="hidden max-sm:block object-contain"
           loading="lazy"
-          width={96}
-          height={64}
+          width={"80px"}
+          height={"80px"}
         />
       </div>
       <h1 className="text-2xl font-semibold max-sm:text-xl max-sm:font-medium">
         Secretaria da Saúde - SESAPI
       </h1>
-      <img src={LogoGovPI} className="w-24 h-16 max-sm:hidden" loading="lazy" />
+      <img
+        src={LogoGovPI}
+        className="max-sm:hidden"
+        loading="lazy"
+        width={"80px"}
+        height={"80px"}
+      />
     </div>
   );
 }

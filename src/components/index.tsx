@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { ListCards } from "./ListCards";
 import { Loading } from "./Loading";
 import { SearchBar } from "./SearchBar";
+import { ThemeSwitcher } from "./SwitcherTheme";
 import { TableProcess } from "./TableProcess";
 
 export {
@@ -12,4 +13,5 @@ export {
   Loading,
   SearchBar,
   TableProcess,
+  ThemeSwitcher,
 };
