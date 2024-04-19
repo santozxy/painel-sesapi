@@ -7,10 +7,12 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
+      "@pages": ["src/pages"],
       "@assets/": ["src/assets/*"],
       "@components": ["src/components"],
       "@utils": ["src/utils"],
       "@services/*": ["src/services/*"]
+      
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
