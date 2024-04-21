@@ -12,24 +12,24 @@ export function BoxDurationProcess({ duration = "" }) {
 
   return (
     <Draggable
-      defaultClassName="border border-gray-300"
+      defaultClassName="border border-gray-600 rounded-md"
       bounds="html"
       onStart={() => setIsDragging(true)}
       onStop={() => setIsDragging(false)}
     >
       {duration ? (
         <div
-          className={`fixed bottom-4 right-4  bg-white max-sm:bottom-5 max-sm:right-2 max-sm:left-2   rounded-lg shadow-md text-lg z-50 ${
+          className={`fixed bottom-4 right-4  bg-white max-sm:bottom-5 max-sm:right-2 max-sm:left-2 shadow-md text-lg z-50 ${
             isDragging ? "shadow-primary" : ""
           }`}
         >
           <div className="flex justify-between">
             <button
               onClick={() => handleToggleTime(1)}
-              className={`bg-primary ${toggleTypeDuration === 1 ? "bg-opacity-100":"bg-opacity-60"} w-full flex  gap-3 items-center justify-center p-2 border-b-2 rounded-tl-md cursor-pointer`}
+              className={`bg-primary dark:bg-dark ${toggleTypeDuration === 1 ? "bg-opacity-100":"bg-opacity-60"} w-full flex  gap-3 items-center justify-center p-2 border-b-2 rounded-t-md cursor-pointer`}
             >
               <Timer size={20} className="text-white" />
-              <h2 className="font-semibold text-center max-sm:text-sm text-terciary-light">
+              <h2 className="font-semibold text-center max-sm:text-sm text-light">
                 Duração Total
               </h2>
             </button>

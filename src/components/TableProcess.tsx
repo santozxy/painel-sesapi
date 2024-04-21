@@ -15,17 +15,17 @@ export function TableProcess({ data }: TableProcessProps) {
     >
       <table className="min-w-full bg-white shadow-md rounded-lg">
         <thead>
-          <tr className="bg-primary">
-            <th className="text-center border py-3 px-4 uppercase font-semibold text-base text-terciary-light">
+          <tr className="bg-primary dark:bg-dark">
+            <th className="text-center border dark:border-gray-600 py-3 px-4 uppercase font-semibold text-base text-light">
               Unidade
             </th>
-            <th className="text-center py-3 border  px-4 uppercase font-semibold text-base text-terciary-light">
+            <th className="text-center py-3 border dark:border-gray-600 px-4 uppercase font-semibold text-base text-light">
               Fluxograma
             </th>
-            <th className="text-center py-3 border  px-4 uppercase font-semibold text-base text-terciary-light">
+            <th className="text-center py-3 border dark:border-gray-600  px-4 uppercase font-semibold text-base text-light">
               Entrada
             </th>
-            <th className="text-center py-3 border  px-4 uppercase font-semibold text-base text-terciary-light">
+            <th className="text-center py-3 border dark:border-gray-600 px-4 uppercase font-semibold text-base text-light">
               Saída
             </th>
           </tr>
@@ -34,7 +34,7 @@ export function TableProcess({ data }: TableProcessProps) {
           {data.map((item, index) => (
             <tr
               key={index}
-              className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
+              className={index % 2 === 0 ? "bg-gray-100 dark:bg-gray-200" : "bg-white"}
             >
               <td className="border border-gray-200 py-4 px-6 text-center">
                 {item.unidDescription}

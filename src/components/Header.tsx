@@ -3,7 +3,7 @@ import LogoGovPI from "@assets/logo-gov-pi.png";
 
 export function Header() {
   return (
-    <div className="fixed border-b-1 z-50 mb-10 top-0 right-0 w-full bg-white border-gray-200 justify-between items-center flex p-3 shadow-md flex-wrap max-sm:flex-col max-sm:gap-5">
+    <div className="fixed border-b z-50 mb-10 top-0 right-0 w-full bg-white dark:bg-dark justify-between items-center flex p-3 shadow-md dark:shadow-xl dark:border-gray-500 flex-wrap max-sm:flex-col max-sm:gap-5">
       <div className="flex gap-5 justify-between items-center">
         <img
           src={LogoSei}
@@ -22,7 +22,7 @@ export function Header() {
           height={"80px"}
         />
       </div>
-      <h1 className="text-2xl font-semibold max-sm:text-xl max-sm:font-medium">
+      <h1 className="text-2xl font-semibold text-dark dark:text-light max-sm:text-xl max-sm:font-medium">
         Secretaria da Saúde - SESAPI
       </h1>
       <img

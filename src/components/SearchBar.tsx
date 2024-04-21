@@ -59,16 +59,16 @@ export function SearchBar({ setProcess, loading }: Props) {
   return (
     <div className="flex-col z-10 flex">
       {currentSearch ? (
-        <div className="p-2 flex justify-between gap-3 w-96 max-sm:w-[22rem] bg-primary rounded-t-md">
+        <div className="p-2 flex justify-between gap-3 w-96 max-sm:w-[22rem] bg-primary dark:bg-dark dark:border-gray-500 border border-gray-300 rounded-t-md">
           <p
-            className="text-terciary-light text-sm max-sm:text-[13px] font-medium"
+            className="text-light text-sm max-sm:text-[13px] font-medium"
             title="Processo pesquisado"
           >
             <strong>Pesquisa: </strong>
             {currentSearch}
           </p>
           <button
-            className="cursor-pointer text-terciary-light hover:text-[#d4d4d4]"
+            className="cursor-pointer text-light hover:text-[#d4d4d4]"
             title="Copiar processo"
             onClick={() => copyToClipboard(currentSearch, "Processo copiado!")}
           >
@@ -76,8 +76,8 @@ export function SearchBar({ setProcess, loading }: Props) {
           </button>
         </div>
       ) : (
-        <div className="p-2 flex justify-between items-center gap-3 w-96 max-sm:w-[22rem] bg-primary rounded-t-md">
-          <p className=" text-terciary-light text-sm max-sm:text-[13px] font-medium">
+        <div className=" dark:bg-dark border dark:border-gray-500 border-gray-300 p-2 flex justify-between items-center gap-3 w-96 max-sm:w-[22rem] bg-primary rounded-t-md">
+          <p className=" text-light text-sm max-sm:text-[13px] font-medium">
             Pesquise por um processo
           </p>
           <SearchIcon size={20} color="#f5f5f5" />
@@ -85,7 +85,7 @@ export function SearchBar({ setProcess, loading }: Props) {
       )}
 
       <div
-        className={`relative w-96 flex justify-center items-center border-top-0 border-b-2 border-x-2 rounded-br-md rounded-bl-md ${
+        className={`relative w-96 flex justify-center items-center border-top-0 dark:border-0 border-b-2 border-x-2 rounded-b-md ${
           isValueValid ? "border-border" : "border-red-500"
         } shadow-md max-sm:w-[22rem]`}
       >
@@ -98,7 +98,7 @@ export function SearchBar({ setProcess, loading }: Props) {
           type="search"
           placeholder="Digite o número do protocolo"
           id="protocol"
-          className="w-96 rounded-md p-2 text-terciary-dark outline-none placeholder:text-gray-400  max-sm:text-sm sm:leading-6"
+          className="w-96 rounded-b-md p-2 text-dark outline-none placeholder:text-gray-400  max-sm:text-sm sm:leading-6 disabled:bg-light"
         />
         <datalist id="previousSearches">
           {previousSearches.map((item, index) => (
