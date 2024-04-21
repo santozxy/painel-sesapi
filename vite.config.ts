@@ -14,6 +14,7 @@ export default defineConfig({
       "@utils": "/src/utils",
       "@services": "/src/services",
       "@assets": "/src/assets",
+      "@hooks": "/src/hooks",
     },
   },
   build: {
