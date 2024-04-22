@@ -8,14 +8,14 @@ export function ThemeSwitcher() {
   return (
     <button
       onClick={toggleTheme}
-      className={`fixed bottom-6 left-4 w-14 h-14 rounded-full flex items-center justify-center z-50 ${
+      className={`fixed bottom-6 sm:left-4 w-14 h-14 shadow-md  rounded-full flex items-center justify-center z-[99] max-sm:bottom-28 max-sm:right-4 max-sm:w-12 max-sm:h-12 border-2 ${
         colorTheme === "dark" ? "bg-light" : "bg-dark"
       } transition-all duration-500 ease-in-out`}
     >
       {colorTheme === "dark" ? (
-        <Moon size={24} className="text-dark" />
+        <Sun size={24} className="text-dark" />
       ) : (
-        <Sun size={24} className="text-light" />
+        <Moon size={24} className="text-light" />
       )}
     </button>
   );

@@ -85,7 +85,7 @@ export function SearchBar({ setProcess, loading }: Props) {
       )}
 
       <div
-        className={`relative w-96 flex justify-center items-center border-top-0 dark:border-0 border-b border-x rounded-b-md ${
+        className={`relative w-96 flex justify-center items-center  border-top-0 dark:border-0 border-b border-x rounded-b-md ${
           isValueValid ? "" : "border-red-500"
         } shadow-md max-sm:w-[22rem]`}
       >
@@ -98,7 +98,7 @@ export function SearchBar({ setProcess, loading }: Props) {
           type="search"
           placeholder="Digite o número do protocolo"
           id="protocol"
-          className="w-96 rounded-b-md p-2 text-dark outline-none placeholder:text-gray-400  max-sm:text-sm sm:leading-6 disabled:bg-light"
+          className="w-96 rounded-b-md p-2 dark:rounded-b dark:rounded-t-none text-dark outline-none placeholder:text-gray-400  max-sm:text-sm sm:leading-6 disabled:bg-light"
         />
         <datalist id="previousSearches">
           {previousSearches.map((item, index) => (
