@@ -27,7 +27,7 @@ export function Card({ detail, cardColor, titleColor }: CardProps) {
       ? "text-green-700"
       : "text-dark";
   const colorOthers = group === "OUTROS" ? "bg-gray-300" : cardColor;
-  const colorIcon = "#2f2f2f";
+
 
   return (
     <div
@@ -44,9 +44,9 @@ export function Card({ detail, cardColor, titleColor }: CardProps) {
         </p>
         <div className="absolute right-2">
           {isExpanded ? (
-            <ChevronUpIcon color={colorIcon} />
+            <ChevronUpIcon className="dark:text-light text-dark" />
           ) : (
-            <ChevronDownIcon color={colorIcon} />
+            <ChevronDownIcon className="dark:text-light text-dark" />
           )}
         </div>
       </div>
