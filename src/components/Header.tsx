@@ -27,6 +27,7 @@ export function Header() {
       </h1>
       <img
         src={LogoGovPI}
+        alt="Logo do SEI"
         className="max-sm:hidden"
         loading="lazy"
         width={"80px"}

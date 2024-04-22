@@ -19,7 +19,7 @@ export default function BoxDurationProcess({ duration = "" }) {
           className={`fixed bottom-5 right-1/3 left-1/3  mx-auto shadow-md text-lg z-50 bg-white max-sm:right-2 max-sm:left-2`}
         >
           <div className="flex justify-between">
-            <button
+            <button role="button" aria-label="Toggle Time"
               onClick={() => handleToggleTime(1)}
               className={`bg-primary dark:bg-dark ${toggleTypeDuration === 1 ? "bg-opacity-100" : "bg-opacity-60"} w-full flex  gap-3 items-center justify-center p-2 border-b-2 rounded-t-md `}
             >
