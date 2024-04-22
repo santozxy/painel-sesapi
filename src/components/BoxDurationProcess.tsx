@@ -16,7 +16,7 @@ export default function BoxDurationProcess({ duration = "" }) {
     >
       {duration ? (
         <div
-          className={`fixed bottom-4 right-1/3 left-1/3  mx-auto shadow-md text-lg z-50 bg-white max-sm:bottom-5 max-sm:right-2 max-sm:left-2`}
+          className={`fixed bottom-5 right-1/3 left-1/3  mx-auto shadow-md text-lg z-50 bg-white max-sm:right-2 max-sm:left-2`}
         >
           <div className="flex justify-between">
             <button
