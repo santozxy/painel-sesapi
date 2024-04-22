@@ -1,10 +1,11 @@
 import { Detail } from "@services/process/processDTO";
 import { motion } from "framer-motion";
+
 interface TableProcessProps {
   data: Detail[];
 }
 
-export function TableProcess({ data }: TableProcessProps) {
+export default function TableProcess({ data }: TableProcessProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -34,7 +35,9 @@ export function TableProcess({ data }: TableProcessProps) {
           {data.map((item, index) => (
             <tr
               key={index}
-              className={index % 2 === 0 ? "bg-gray-100 dark:bg-gray-200" : "bg-white"}
+              className={
+                index % 2 === 0 ? "bg-gray-100 dark:bg-gray-200" : "bg-white"
+              }
             >
               <td className="border border-gray-200 py-4 px-6 text-center">
                 {item.unidDescription}

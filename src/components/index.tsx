@@ -1,11 +1,13 @@
-import { BoxDurationProcess } from "./BoxDurationProcess";
+import { lazy } from "react";
 import { Header } from "./Header";
-import { ListCards } from "./ListCards";
-import { Loading } from "./Loading";
 import { SearchBar } from "./SearchBar";
+import { Loading } from "./Loading";
 import { ThemeSwitcher } from "./SwitcherTheme";
-import { TableProcess } from "./TableProcess";
 import { ToastContainerStyle } from "./ToastContainerStyle";
+
+const ListCards = lazy(() => import("./ListCards"));
+const TableProcess = lazy(() => import("./TableProcess"));
+const BoxDurationProcess = lazy(() => import("./BoxDurationProcess"));
 
 export {
   BoxDurationProcess,

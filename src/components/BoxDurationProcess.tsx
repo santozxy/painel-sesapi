@@ -2,7 +2,7 @@ import { Timer } from "lucide-react";
 import React, { useState } from "react";
 import Draggable from "react-draggable";
 
-export function BoxDurationProcess({ duration = "" }) {
+export default function BoxDurationProcess({ duration = "" }) {
   const [isDragging, setIsDragging] = useState(false);
   const [toggleTypeDuration, setToggleTypeDuration] = useState(1);
 
