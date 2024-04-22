@@ -13,6 +13,7 @@ import {
   ListCards,
   TableProcess,
   ToastContainerStyle,
+  ScrollPage,
 } from "@components";
 
 import { useQuery } from "@tanstack/react-query";
@@ -62,7 +63,9 @@ export function Painel() {
     <div className="flex-col flex gap-10 pb-20">
       <Header />
       <ToastContainerStyle />
-      <BoxDurationProcess duration={data?.duration} />
+      <div className="flex justify-center items-center  z-50 ">
+        <BoxDurationProcess duration={data?.duration} />
+      </div>
       <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20 max-sm:mt-32">
         <SearchBar loading={isLoading} setProcess={setProcess} />
       </div>
@@ -85,6 +88,7 @@ export function Painel() {
               duration={data?.othersDuration}
             />
           )}
+          <ScrollPage />
           <div className="mx-5 mb-10">
             {dataDetailed && dataDetailed.length > 0 && (
               <TableProcess data={dataDetailed} />

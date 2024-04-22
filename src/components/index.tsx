@@ -4,7 +4,7 @@ import { SearchBar } from "./SearchBar";
 import { Loading } from "./Loading";
 import { ThemeSwitcher } from "./SwitcherTheme";
 import { ToastContainerStyle } from "./ToastContainerStyle";
-
+import { ScrollPage } from "./ScrollPage";
 const ListCards = lazy(() => import("./ListCards"));
 const TableProcess = lazy(() => import("./TableProcess"));
 const BoxDurationProcess = lazy(() => import("./BoxDurationProcess"));
@@ -18,4 +18,5 @@ export {
   TableProcess,
   ThemeSwitcher,
   ToastContainerStyle,
+  ScrollPage,
 };
