@@ -12,7 +12,7 @@ export function BoxDurationProcess({ duration = "" }) {
 
   return (
     <Draggable
-      defaultClassName="border border-gray-600 rounded-md"
+      defaultClassName="border dark:border-gray-600 rounded-md"
       bounds="html"
       onStart={() => setIsDragging(true)}
       onStop={() => setIsDragging(false)}

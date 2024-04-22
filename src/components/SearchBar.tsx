@@ -85,8 +85,8 @@ export function SearchBar({ setProcess, loading }: Props) {
       )}
 
       <div
-        className={`relative w-96 flex justify-center items-center border-top-0 dark:border-0 border-b-2 border-x-2 rounded-b-md ${
-          isValueValid ? "border-border" : "border-red-500"
+        className={`relative w-96 flex justify-center items-center border-top-0 dark:border-0 border-b border-x rounded-b-md ${
+          isValueValid ? "" : "border-red-500"
         } shadow-md max-sm:w-[22rem]`}
       >
         <input

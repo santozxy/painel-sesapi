@@ -10,29 +10,29 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as PainelImport } from "./routes/painel";
+import { Route as rootRoute } from './routes/__root'
+import { Route as PainelImport } from './routes/painel'
 
 // Create/Update Routes
 
 const PainelRoute = PainelImport.update({
-  path: "/painel",
+  path: '/painel',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/painel": {
-      preLoaderRoute: typeof PainelImport;
-      parentRoute: typeof rootRoute;
-    };
+    '/painel': {
+      preLoaderRoute: typeof PainelImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([PainelRoute]);
+export const routeTree = rootRoute.addChildren([PainelRoute])
 
 /* prettier-ignore-end */

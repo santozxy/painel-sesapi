@@ -1,6 +1,6 @@
 import "react-toastify/dist/ReactToastify.css";
 import { useMemo, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { isAxiosError } from "axios";
 import { Detail } from "@services/process/processDTO";
 import { searchProcess } from "@services/process/processService";
@@ -12,6 +12,7 @@ import {
   Loading,
   ListCards,
   TableProcess,
+  ToastContainerStyle,
 } from "@components";
 
 import { useQuery } from "@tanstack/react-query";
@@ -60,7 +61,7 @@ export function Painel() {
   return (
     <div className="flex-col flex gap-10 pb-20">
       <Header />
-      <ToastContainer pauseOnHover={false} />
+      <ToastContainerStyle />
       <BoxDurationProcess duration={data?.duration} />
       <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20 max-sm:mt-60">
         <SearchBar loading={isLoading} setProcess={setProcess} />
