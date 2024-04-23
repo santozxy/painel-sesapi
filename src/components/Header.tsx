@@ -1,5 +1,5 @@
-import LogoSei from "@assets/logo-sei.png";
-import LogoGovPI from "@assets/logo-gov-pi.png";
+import LogoSei from "@assets/logo-sei.webp";
+import LogoGovPI from "@assets/logo-gov-pi.webp";
 
 export function Header() {
   return (
@@ -20,7 +20,7 @@ export function Header() {
           loading="lazy"
           width={"80px"}
           height={"80px"}
-        /> 
+        />
       </div>
       <h1 className="text-xl font-semibold text-dark dark:text-light max-sm:text-xl max-sm:font-medium antialiased">
         Secretaria da Saúde - SESAPI
