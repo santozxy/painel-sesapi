@@ -14,7 +14,7 @@ export default function Header() {
           height={"80px"}
         />
         <img
-          alt="Logo do Governo do Piauí"
+          alt="Logo do do GOV PI"
           src={LogoGovPI}
           className="hidden max-sm:block object-contain"
           loading="lazy"
@@ -27,8 +27,8 @@ export default function Header() {
       </h1>
       <img
         src={LogoGovPI}
-        alt="Logo do SEI"
-        className="max-sm:hidden"
+        alt="Logo do GOV PI"
+        className="max-sm:hidden object-contain"
         loading="lazy"
         width={"80px"}
         height={"80px"}
