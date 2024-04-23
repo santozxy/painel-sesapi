@@ -191,7 +191,6 @@ const textColors = [
   "dark:text-cyan-900",
   "dark:text-gray-900",
 ];
-
 export default function ListCards({
   data,
   type,
