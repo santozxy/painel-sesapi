@@ -6,6 +6,12 @@ export interface ProcessData {
   duration: string;
   mainDuration: string;
   othersDuration: string;
+  pauses: {
+    start: string;
+    end: string;
+    duration: string;
+  }[];
+  durationPauses: string;
   days: number;
   hours: number;
   type: string;

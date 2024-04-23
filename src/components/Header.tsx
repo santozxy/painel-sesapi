@@ -22,7 +22,7 @@ export function Header() {
           height={"80px"}
         />
       </div>
-      <h1 className="text-xl font-semibold text-dark dark:text-light max-sm:text-xl max-sm:font-medium">
+      <h1 className="text-xl font-semibold text-dark dark:text-light max-sm:text-xl max-sm:font-medium antialiased">
         Secretaria da Saúde - SESAPI
       </h1>
       <img

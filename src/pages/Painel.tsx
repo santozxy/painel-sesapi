@@ -1,5 +1,5 @@
 import "react-toastify/dist/ReactToastify.css";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import { isAxiosError } from "axios";
 import { Detail } from "@services/process/processDTO";
@@ -64,7 +64,7 @@ export function Painel() {
       <Header />
       <ToastContainerStyle />
       <div className="flex justify-center items-center  z-50 ">
-        <BoxDurationProcess duration={data?.duration} />
+        <BoxDurationProcess totalDuration={data?.duration} pauseDuration={data?.durationPauses} />
       </div>
       <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20 max-sm:mt-32">
         <SearchBar loading={isLoading} setProcess={setProcess} />
@@ -72,29 +72,31 @@ export function Painel() {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="flex flex-col justify-center items-center mt-5">
-          {dataGrouped.length > 0 && (
-            <ListCards
-              data={dataGrouped}
-              type="Tramitação Dentro do Fluxo"
-              typeDescription={data?.typeDescription}
-              duration={data?.mainDuration}
-            />
-          )}
-          {dataFilterOthers.length > 0 && (
-            <ListCards
-              data={dataFilterOthers}
-              type={"Tramitação Fora do Fluxo"}
-              duration={data?.othersDuration}
-            />
-          )}
-          <ScrollPage />
-          <div className="mx-5 mb-10">
-            {dataDetailed && dataDetailed.length > 0 && (
-              <TableProcess data={dataDetailed} />
+        <Suspense fallback={<Loading />}>
+          <div className="flex flex-col justify-center items-center mt-5">
+            {dataGrouped.length > 0 && (
+              <ListCards
+                data={dataGrouped}
+                type="Tramitação Dentro do Fluxo"
+                typeDescription={data?.typeDescription}
+                duration={data?.mainDuration}
+              />
             )}
+            {dataFilterOthers.length > 0 && (
+              <ListCards
+                data={dataFilterOthers}
+                type={"Tramitação Fora do Fluxo"}
+                duration={data?.othersDuration}
+              />
+            )}
+            <ScrollPage />
+            <div className="mx-5 mb-10">
+              {dataDetailed && dataDetailed.length > 0 && (
+                <TableProcess data={dataDetailed} />
+              )}
+            </div>
           </div>
-        </div>
+        </Suspense>
       )}
     </div>
   );
