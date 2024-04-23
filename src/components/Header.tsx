@@ -22,9 +22,9 @@ export default function Header() {
           height={"80px"}
         />
       </div>
-      {/* <h1 className="text-xl lg:text-2xl  text-dark dark:text-light max-sm:text-lg  max-sm:font-medium">
+      <h1 className="text-xl lg:text-2xl  text-dark dark:text-light max-sm:text-lg  max-sm:font-medium">
         Secretaria da Saúde - SESAPI
-      </h1> */}
+      </h1>
       <img
         src={LogoGovPI}
         alt="Logo do GOV PI"
