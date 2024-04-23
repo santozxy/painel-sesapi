@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "/painel",
-  plugins: [react(), TanStackRouterVite()],
+  plugins: [react()],
   resolve: {
     alias: {
       "@pages": "/src/pages",
@@ -18,6 +17,6 @@ export default defineConfig({
     },
   },
   build: {
-    chunkSizeWarningLimit: 800,
+    chunkSizeWarningLimit: 600,
   },
 });
