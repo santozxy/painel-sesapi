@@ -1,6 +1,6 @@
 import { Header } from "@components";
 
-export function NotFound() {
+export default function NotFound() {
   return (
     <>
       <Header />

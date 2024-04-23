@@ -1,4 +1,7 @@
-import { Painel } from "./Painel";
-import { NotFound } from "./NotFound";
+
+import { lazy } from "react";
+
+const Painel = lazy(() => import("./Painel"));
+const NotFound = lazy(() => import("./NotFound"));
 
 export { Painel, NotFound };

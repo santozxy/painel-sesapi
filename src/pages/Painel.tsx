@@ -17,7 +17,7 @@ import {
 } from "@components";
 
 import { useQuery } from "@tanstack/react-query";
-export function Painel() {
+export default function Painel() {
   const [process, setProcess] = useState("");
   const [dataGrouped, setDataGrouped] = useState<Detail[]>([]);
   const [dataDetailed, setDataDetailed] = useState<Detail[]>([]);
@@ -64,7 +64,10 @@ export function Painel() {
       <Header />
       <ToastContainerStyle />
       <div className="flex justify-center items-center  z-50 ">
-        <BoxDurationProcess totalDuration={data?.duration} pauseDuration={data?.durationPauses} />
+        <BoxDurationProcess
+          totalDuration={data?.duration}
+          pauseDuration={data?.durationPauses}
+        />
       </div>
       <div className="flex gap-5 flex-wrap-reverse justify-center items-center mt-20 max-sm:mt-32">
         <SearchBar loading={isLoading} setProcess={setProcess} />
