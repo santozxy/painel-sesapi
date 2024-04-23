@@ -9,7 +9,7 @@ interface Props {
 }
 
 const regex = /^(\d{5})?\.?(\d{6})?\/?(\d{0,4})?-?(\d{0,2})$/;
-export function SearchBar({ setProcess, loading }: Props) {
+export default function SearchBar({ setProcess, loading }: Props) {
   const [search, setSearch] = useState<string>("00012.");
   const [currentSearch, setCurrentSearch] = useState<string>("");
   const [isValueValid, setIsValueValid] = useState<boolean>(true);
@@ -77,7 +77,7 @@ export function SearchBar({ setProcess, loading }: Props) {
         </div>
       ) : (
         <div className=" dark:bg-dark border dark:border-gray-500 border-gray-300 p-2 flex justify-between items-center gap-3 w-96 max-sm:w-[22rem] bg-primary rounded-t-md">
-          <p className=" text-light text-sm max-sm:text-[13px] font-medium">
+          <p className=" text-light text-sm max-sm:text-[13px] font-semibold">
             Pesquise por um processo
           </p>
           <SearchIcon size={20} color="#f5f5f5" />

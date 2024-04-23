@@ -1,7 +1,7 @@
 import LogoSei from "@assets/logo-sei.webp";
 import LogoGovPI from "@assets/logo-gov-pi.webp";
 
-export function Header() {
+export default function Header() {
   return (
     <div className="fixed border-b z-50 mb-10 top-0 right-0 w-full bg-white dark:bg-dark justify-between items-center flex p-3 shadow-md dark:shadow-xl dark:border-gray-500 flex-wrap max-sm:flex-col max-sm:gap-5">
       <div className="flex gap-5 justify-between items-center">
@@ -22,7 +22,7 @@ export function Header() {
           height={"80px"}
         />
       </div>
-      <h1 className="text-xl font-semibold text-dark dark:text-light max-sm:text-xl max-sm:font-medium antialiased">
+      <h1 className="text-xl lg:text-2xl font-semibold text-dark dark:text-light max-sm:text-lg  max-sm:font-semibold">
         Secretaria da Saúde - SESAPI
       </h1>
       <img
