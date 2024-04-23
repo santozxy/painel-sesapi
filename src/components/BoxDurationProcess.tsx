@@ -32,10 +32,10 @@ export default function BoxDurationProcess({
               role="button"
               aria-label="Toggle Time"
               onClick={() => handleToggleTime(1)}
-              className={`bg-primary dark:bg-dark rounded-tl-md ${toggleTypeDuration === 1 ? "bg-opacity-100 dark:bg-opacity-100" : "dark:bg-opacity-70 bg-opacity-70"} w-full flex gap-3 items-center justify-center p-1 border-r dark:border-gray-600 cursor-pointer`}
+              className={`bg-primary dark:bg-dark rounded-tl-md ${toggleTypeDuration === 1 ? "bg-opacity-100 dark:bg-opacity-100" : "dark:bg-opacity-70 bg-opacity-70"} w-full flex gap-3 items-center justify-center border-r dark:border-gray-600 cursor-pointer`}
             >
-              <Timer size={20} className="text-white" />
-              <h2 className="font-semibold text-center max-sm:text-sm text-light">
+              <Timer size={20} className="text-light" />
+              <h2 className="font-semibold text-base text-center max-sm:text-sm text-light">
                 Duração Total
               </h2>
             </button>
@@ -43,14 +43,14 @@ export default function BoxDurationProcess({
               onClick={() => handleToggleTime(2)}
               className={`bg-primary dark:bg-dark ${toggleTypeDuration === 2 ? "bg-opacity-100 dark:bg-opacity-100" : "dark:bg-opacity-70 bg-opacity-70"} w-full flex  gap-3 items-center justify-center p-1 rounded-tr-md cursor-pointer`}
             >
-              <Timer size={20} className="text-white" />
-              <h2 className="font-semibold text-center max-sm:text-sm text-terciary-light">
+              <Timer size={20} className="text-light" />
+              <h2 className="font-semibold text-base text-center max-sm:text-sm text-light">
                 Pausas
               </h2>
             </button>
           </div>
 
-          <h2 className="font-medium p-1 max-sm:text-sm text-center">
+          <h2 className="font-medium text-base text-dark p-1.5 max-sm:text-sm text-center">
             {toggleTypeDuration === 1 ? totalDuration : pause}
           </h2>
         </div>
