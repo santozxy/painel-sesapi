@@ -7,6 +7,7 @@ import { ThemeSwitcher } from "@components";
 
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
+import Header from "./components/Header";
 
 const router = createRouter({
   routeTree,
@@ -21,6 +22,7 @@ declare module "@tanstack/react-router" {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+      <Header />
       <ThemeSwitcher />
       <RouterProvider router={router} />
     </QueryClientProvider>

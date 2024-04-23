@@ -7,7 +7,6 @@ import { searchProcess } from "@services/process/processService";
 import { getDataDetailed, getDataGrouped } from "@utils";
 import {
   SearchBar,
-  Header,
   BoxDurationProcess,
   Loading,
   ListCards,
@@ -61,7 +60,6 @@ export default function Painel() {
 
   return (
     <div className="flex-col flex gap-10 pb-20">
-      <Header />
       <ToastContainerStyle />
       <div className="flex justify-center items-center  z-50 ">
         <BoxDurationProcess
