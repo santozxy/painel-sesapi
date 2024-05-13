@@ -1,67 +1,41 @@
-//// ProcessDTO detalhado com passar o parametro 0 na rota
-export interface Unids {
-  [key: string]: Detail;
-}
-export interface ProcessDTO {
+export interface ProcessData {
   protocolo: string;
   typeDescription: string;
   startDate: string;
   endDate: string;
   duration: string;
+  mainDuration: string;
+  othersDuration: string;
+  pauses: {
+    start: string;
+    end: string;
+    duration: string;
+  }[];
+  durationPauses: string;
   days: number;
   hours: number;
   type: string;
-  unids: Unids;
+  grouped: GroupedDetail;
+  detailed: DetailedDetail;
+}
+export interface GroupedDetail {
+  [key: string]: {
+    [key: string]: Detail;
+  };
 }
 
+export interface DetailedDetail {
+  [key: string]: {
+    start: string;
+    unidDescription: string;
+    typeGroup: string;
+    group: string;
+    end: string;
+    minutes: number;
+    seconds: number;
+  };
+}
 export interface Detail {
-  start: string;
-  unidDescription: string;
-  typeGroup: string;
-  group: string;
-  end: string;
-  minutes: number;
-  seconds: number;
-}
-
-
-
-export interface ProcessDTO {
-  protocolo: string;
-  typeDescription: string;
-  startDate: string;
-  endDate: string;
-  duration: string;
-  days: number;
-  hours: number;
-  type: string;
-  unids: Unids ;
-}
-
-
-
-//// ProcessDTO resumido com passar o parametro 1 na rota
-
-export interface ProcessDTOResume {
-  protocolo: string;
-  typeDescription: string;
-  startDate: string;
-  endDate: string;
-  duration: string;
-  days: number;
-  hours: number;
-  type: string;
-  unids: Unids ;
-}
-export interface UnidsResume {
-  [unitId: string]: UnitResume;
-}
-
-export interface UnitResume {
-  [order: string]: DetailResume;
-}
-
-export interface DetailResume {
   seconds: number;
   minutes: number;
   unidDescription: string;
@@ -71,4 +45,5 @@ export interface DetailResume {
   end: string;
   hours: number;
   days: number;
+  outOfTime: boolean;
 }
