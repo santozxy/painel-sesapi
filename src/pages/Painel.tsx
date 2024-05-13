@@ -5,6 +5,7 @@ import { isAxiosError } from "axios";
 import { Detail } from "@services/process/processDTO";
 import { searchProcess } from "@services/process/processService";
 import { getDataDetailed, getDataGrouped } from "@utils";
+
 import {
   SearchBar,
   BoxDurationProcess,
@@ -57,7 +58,6 @@ export default function Painel() {
       setDataDetailed([]);
     }
   }, [data]);
-
   return (
     <div className="flex-col flex gap-10 pb-20">
       <ToastContainerStyle />
@@ -74,12 +74,14 @@ export default function Painel() {
         <Loading />
       ) : (
         <Suspense fallback={<Loading />}>
-          <div className="flex flex-col justify-center items-center mt-5">
+          <h1 className="text-xl text-center font-bold text-dark dark:text-light max-sm:text-sm py-5 border-b dark:border-gray-500">
+            {data?.typeDescription}
+          </h1>
+          <div className="flex flex-col md:flex-row mt-4">
             {dataGrouped.length > 0 && (
               <ListCards
                 data={dataGrouped}
                 type="Tramitação Dentro do Fluxo"
-                typeDescription={data?.typeDescription}
                 duration={data?.mainDuration}
               />
             )}
@@ -91,11 +93,11 @@ export default function Painel() {
               />
             )}
             <ScrollPage />
-            <div className="mx-5 mb-10">
-              {dataDetailed && dataDetailed.length > 0 && (
-                <TableProcess data={dataDetailed} />
-              )}
-            </div>
+          </div>
+          <div className="mx-5 mb-10">
+            {dataDetailed && dataDetailed.length > 0 && (
+              <TableProcess data={dataDetailed} />
+            )}
           </div>
         </Suspense>
       )}
