@@ -2,7 +2,7 @@ import {
   Detail,
   DetailedDetail,
   GroupedDetail,
-} from "@services/process/processDTO";
+} from "@domain/process/processTypes";
 
 export function getDataGrouped(response: GroupedDetail) {
   const data: Detail[] = [];
