@@ -1,6 +1,6 @@
 import { Card } from "./card-collapse";
 import { Detail } from "@domain/process/processTypes";
-import { Separator } from "./separator";
+import { Separator } from "./separator-list";
 import { motion } from "framer-motion";
 
 interface CardListProps {
