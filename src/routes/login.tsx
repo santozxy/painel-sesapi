@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "@components";
-//import { useAuth } from "@hooks";
+import { useAuth } from "@hooks";
 import { useState } from "react";
 import { Lock, User } from "lucide-react";
 import { z } from "zod";
@@ -38,7 +38,7 @@ interface Inputs {
 export function Login() {
   const { auth, nickname } = Route.useSearch();
   const descryptAuth = descryptItem(auth ?? "");
-  //const { signIn } = useAuth();
+  const { signIn } = useAuth();
   const [loading, setLoading] = useState(false);
   const navigate = Route.useNavigate();
 
@@ -50,8 +50,8 @@ export function Login() {
       data.nickname = String(descryptNickname);
     }
     try {
+      await signIn(data);
       await navigate({ to: "/painel" });
-      //await signIn(data);
     } finally {
       setLoading(false);
     }

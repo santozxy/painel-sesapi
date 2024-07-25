@@ -22,5 +22,5 @@ function createApiInstance(params: { baseURL: string }) {
 }
 
 
-export const api = createApiInstance(config.prod);
+export const api = createApiInstance(config.demo);
 

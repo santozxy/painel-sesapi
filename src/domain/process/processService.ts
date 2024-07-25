@@ -1,8 +1,8 @@
+import axios from "axios";
 import { ProcessData } from "./processTypes";
-import { api } from "@api/config";
 
 async function searchProcess(process: string) {
-  const { data } = await api.get<ProcessData>(`/${process}`);
+  const { data } = await axios.get<ProcessData>(`https://api.painel.sei.pi.gov.br/api/processos/contratos/${process}`);
   return data;
 }
 
