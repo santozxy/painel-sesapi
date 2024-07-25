@@ -7,10 +7,10 @@ interface BoxDurationProcessProps {
 }
 
 function DragElement(elmnt: HTMLElement) {
-  let pos1 = 0;
-  let pos2 = 0;
-  let pos3 = 0;
-  let pos4 = 0;
+  let pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
 
   if (!elmnt) {
     console.error("Element not found");
@@ -64,20 +64,21 @@ export default function BoxDurationProcess({
   const pause = pauseDuration ? pauseDuration : "Não houve pausas";
 
   useEffect(() => {
-    const elmnt = document.getElementById("DragInfo");
-    if (elmnt) {
-      DragElement(elmnt);
+    if (totalDuration) {
+      const elmnt = document.getElementById("DragInfo");
+      if (elmnt) {
+        DragElement(elmnt);
+      }
     }
-  }, []);
+  }, [totalDuration]);
 
   return (
     totalDuration && (
       <div
-        className="fixed bottom-5 z-[9999] shadow-lg sm:w-[26rem] h-20 bg-white right-5 rounded-md"
-        draggable
+        className="fixed bottom-5 z-[9999] shadow-lg sm:w-[26rem] h-20 bg-white rounded-md"
         id="DragInfo"
       >
-        <div className="flex justify-between border-b-2 ">
+        <div className="flex justify-between border-b-2">
           <button
             role="button"
             aria-label="Toggle Time"
@@ -91,7 +92,7 @@ export default function BoxDurationProcess({
           </button>
           <button
             onClick={() => handleToggleTime(2)}
-            className={`bg-primary dark:bg-dark ${toggleTypeDuration === 2 ? "bg-opacity-100 dark:bg-opacity-100" : "dark:bg-opacity-70 bg-opacity-70"} w-full flex  gap-3 items-center justify-center p-1 rounded-tr-md cursor-pointer`}
+            className={`bg-primary dark:bg-dark ${toggleTypeDuration === 2 ? "bg-opacity-100 dark:bg-opacity-100" : "dark:bg-opacity-70 bg-opacity-70"} w-full flex gap-3 items-center justify-center p-1 rounded-tr-md cursor-pointer`}
           >
             <Timer size={20} className="text-light" />
             <h2 className="font-semibold text-base text-center max-sm:text-sm text-light">
