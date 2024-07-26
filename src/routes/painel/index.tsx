@@ -21,10 +21,13 @@ import {
   ScrollPage,
   Header,
   ThemeSwitcher,
+  DialogRegisterCPF,
 } from "@components";
 
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@hooks";
 function Painel() {
+  const { user } = useAuth();
   const [process, setProcess] = useState("");
   const [dataGrouped, setDataGrouped] = useState<Detail[]>([]);
   const [dataDetailed, setDataDetailed] = useState<Detail[]>([]);
@@ -46,7 +49,6 @@ function Painel() {
   }
 
   useMemo(() => {
-    
     if (data) {
       const dataGrouped = getDataGrouped(data.grouped);
       const dataDetailed = getDataDetailed(data.detailed);
@@ -68,8 +70,9 @@ function Painel() {
   }, [data]);
   return (
     <div className="flex-col flex gap-10 pb-20">
-       <Header />
-       <ThemeSwitcher />
+      <Header />
+      {!user?.nickname && <DialogRegisterCPF />}
+      <ThemeSwitcher />
       <ToastContainerStyle />
       <div className="flex justify-center items-center  z-50 ">
         <BoxDurationProcess

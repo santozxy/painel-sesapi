@@ -2,23 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
-    html {
-        @apply font-montserrat;
-    }
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
-    font-display: swap;
-}
-
-
-html {
+  html {
+    @apply font-montserrat;
+    scrollbar-width: none;
 
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
@@ -29,6 +16,7 @@ html {
     select:-webkit-autofill,
     select:-webkit-autofill:hover,
     select:-webkit-autofill:focus {
-        -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+      -webkit-box-shadow: 0 0 0px 1000px var(--secondary) inset !important;
     }
+  }
 }

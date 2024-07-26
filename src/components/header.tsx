@@ -1,6 +1,7 @@
 import LogoSei from "@assets/logo-sei.webp";
 import Logos from "@assets/logos.png";
 import LogosDark from "@assets/logos-dark.png";
+import { DropdownMenuInfo } from "./dropdown-menu-info";
 
 export default function Header() {
   return (
@@ -30,26 +31,29 @@ export default function Header() {
         />
       </div>
       <div className=" absolute left-0 right-0 w-full max-sm:bottom-0">
-        <h1 className="md:text-xl lg:text-2xl text-dark dark:text-light max-sm:text-base text-center">
-          Secretaria da Saúde - SESAPI
+        <h1 className="md:text-xl lg:text-2xl text-dark dark:text-light max-sm:text-base font-semibold text-center">
+          Painel SESAPI
         </h1>
       </div>
-      <img
-        src={Logos}
-        alt="Logo do GOV PI"
-        className="max-sm:hidden object-contain dark:hidden"
-        loading="lazy"
-        width={350}
-        height={180}
-      />
-      <img
-        src={LogosDark}
-        alt="Logo do GOV PI"
-        className="hidden object-contain dark:block"
-        loading="lazy"
-        width={350}
-        height={180}
-      />
+      <div className="flex items-center gap-6 z-[9999999]">
+        <img
+          src={Logos}
+          alt="Logo do GOV PI"
+          className="max-sm:hidden object-contain dark:hidden"
+          loading="lazy"
+          width={350}
+          height={180}
+        />
+        <img
+          src={LogosDark}
+          alt="Logo do GOV PI"
+          className="hidden object-contain dark:block"
+          loading="lazy"
+          width={350}
+          height={180}
+        />
+        <DropdownMenuInfo />
+      </div>
     </div>
   );
 }

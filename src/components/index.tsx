@@ -4,7 +4,9 @@ import { ThemeSwitcher } from "./switcher-theme";
 import { ToastContainerStyle } from "./toast-container-style";
 import { ScrollPage } from "./scroll-page";
 import { Button } from "./button";
-import {NotFound} from "./not-found";
+import { NotFound } from "./not-found";
+import { DialogRegisterCPF } from "./dialog-register-cpf";
+import { DropdownMenuInfo } from "./dropdown-menu-info";
 
 const Header = lazy(() => import("./header"));
 const SearchBar = lazy(() => import("./search-bar"));
@@ -22,6 +24,8 @@ export {
   ThemeSwitcher,
   ToastContainerStyle,
   ScrollPage,
+  DialogRegisterCPF,
+  DropdownMenuInfo,
   Button,
-  NotFound
+  NotFound,
 };
