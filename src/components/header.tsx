@@ -32,7 +32,7 @@ export default function Header() {
             width={270}
             height={100}
           />
-          <div className="flex max-sm:absolute bottom-1 right-3 gap-5">
+          <div className="flex max-sm:absolute bottom-1 right-5 gap-5">
             <ThemeSwitcher />
             <DropdownMenuInfo />
           </div>
