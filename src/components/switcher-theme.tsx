@@ -9,14 +9,14 @@ export function ThemeSwitcher() {
       role="button"
       aria-label="Toggle Theme"
       onClick={toggleTheme}
-      className={`fixed bottom-6 w-14 h-14 border-2 rounded-full flex items-center justify-center z-[99] shadow-md sm:left-4 max-sm:bottom-28 max-sm:right-4 max-sm:w-12 max-sm:h-12  ${
-        colorTheme === "dark" ? "bg-dark" : "bg-light"
-      } transition-all duration-500 ease-in-out`}
+      className={`max-sm:fixed max-sm:w-14 max-sm:h-14 max-sm:border-2 max-sm:rounded-full flex items-center justify-center z-[99] max-sm:shadow-md 
+        sm:left-4 max-sm:bottom-28 max-sm:right-4 
+         ${colorTheme === "dark" ? "max:smbg-dark" : "max-sm:bg-light"} max-sm:transition-all max-sm:duration-500 max-sm:ease-in-out`}
     >
       {colorTheme === "dark" ? (
-        <Moon size={24} className="text-light" />
+        <Sun className="text-light w-7 h-7" />
       ) : (
-        <Sun size={24} className="text-dark" />
+        <Moon className="text-dark w-7 h-7" />
       )}
     </button>
   );

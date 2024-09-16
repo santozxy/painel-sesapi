@@ -72,7 +72,6 @@ function Painel() {
     <div className="flex-col flex gap-10 pb-20">
       <Header />
       {!user?.nickname && <DialogRegisterCPF />}
-      <ThemeSwitcher />
       <ToastContainerStyle />
       <div className="flex justify-center items-center  z-50 ">
         <BoxDurationProcess

@@ -6,7 +6,7 @@ export async function login(login: LoginParams) {
     usuario: login.user,
     senha: login.password,
     nickname: login.nickname,
-    orgao: "2",
+    orgao: "36",
   };
   const { data } = await api.post<LoginDTO>("/login", body);
   return data;
