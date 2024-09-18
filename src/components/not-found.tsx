@@ -1,5 +1,4 @@
-
-export default function NotFound() {
+export function NotFound() {
   return (
     <>
       <div className="flex flex-col  justify-center items-center h-screen bg-background dark:bg-dark">
