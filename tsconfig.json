@@ -11,8 +11,10 @@
       "@assets/": ["src/assets/*"],
       "@components": ["src/components"],
       "@utils": ["src/utils"],
-      "@services/*": ["src/services/*"],
-      "@hooks": ["src/hooks"]
+      "@domain/*": ["src/domain/*"],
+      "@hooks": ["src/hooks"],
+      "@services": ["src/services"],
+      "@api/*": ["./src/api/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

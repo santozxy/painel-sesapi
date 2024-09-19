@@ -1,14 +1,18 @@
 import { lazy } from "react";
-import { Loading } from "./Loading";
-import { ThemeSwitcher } from "./SwitcherTheme";
-import { ToastContainerStyle } from "./ToastContainerStyle";
-import { ScrollPage } from "./ScrollPage";
+import { Loading } from "./loading-search";
+import { ThemeSwitcher } from "./switcher-theme";
+import { ToastContainerStyle } from "./toast-container-style";
+import { ScrollPage } from "./scroll-page";
+import { Button } from "./button";
+import { NotFound } from "./not-found";
+import { DialogRegisterCPF } from "./dialog-register-cpf";
+import { DropdownMenuInfo } from "./dropdown-menu-info";
 
-const Header = lazy(() => import("./Header"));
-const SearchBar = lazy(() => import("./SearchBar"));
-const ListCards = lazy(() => import("./ListCards"));
-const TableProcess = lazy(() => import("./TableProcess"));
-const BoxDurationProcess = lazy(() => import("./BoxDurationProcess"));
+const Header = lazy(() => import("./header"));
+const SearchBar = lazy(() => import("./search-bar"));
+const ListCards = lazy(() => import("./list-cards"));
+const TableProcess = lazy(() => import("./table-process"));
+const BoxDurationProcess = lazy(() => import("./box-duration-process"));
 
 export {
   BoxDurationProcess,
@@ -20,4 +24,8 @@ export {
   ThemeSwitcher,
   ToastContainerStyle,
   ScrollPage,
+  DialogRegisterCPF,
+  DropdownMenuInfo,
+  Button,
+  NotFound,
 };

@@ -1,5 +1,4 @@
-import React from "react";
-import { Detail } from "@services/process/processDTO";
+import { Detail } from "@domain/process/processTypes";
 import { ChevronDownIcon, ChevronUpIcon, LogIn, LogOut } from "lucide-react";
 import { ConvertSecondsDate } from "@utils";
 import { useCollapse } from "react-collapsed";
@@ -27,7 +26,6 @@ export function Card({ detail, cardColor, titleColor }: CardProps) {
       ? "text-green-700"
       : "text-dark";
   const colorOthers = group === "OUTROS" ? "bg-gray-300" : cardColor;
-
 
   return (
     <div

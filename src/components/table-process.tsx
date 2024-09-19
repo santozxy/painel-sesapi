@@ -1,4 +1,4 @@
-import { Detail } from "@services/process/processDTO";
+import { Detail } from "@domain/process/processTypes";
 import { motion } from "framer-motion";
 
 interface TableProcessProps {
