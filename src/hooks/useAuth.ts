@@ -105,7 +105,7 @@ export const useAuth = () => {
       throw redirect({ to: "/painel" });
     } else {
       console.log("entrou aqui no else validateGov");
-      throw redirect({ to: "/painel/login", replace: true });
+      redirect({ to: "/painel/login", replace: true, throw: true });
     }
   }
 
