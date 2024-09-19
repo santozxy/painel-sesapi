@@ -104,7 +104,7 @@ export const useAuth = () => {
       await getUserData();
       throw redirect({ to: "/painel" });
     } else {
-      throw redirect({ to: "/painel/login" });
+      throw redirect({ to: "/painel/login" ,replace: true});
     }
   }
 

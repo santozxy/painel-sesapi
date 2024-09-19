@@ -42,7 +42,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
         nickname,
       });
     }
-    if (isLogged && !currentPath.startsWith("/painel")) {
+    if (isLogged && currentPath.includes("/login")) {
       throw redirect({ to: "/painel" });
     }
   },
