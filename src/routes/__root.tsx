@@ -36,14 +36,18 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       if (nickname) {
         throw redirect({ to: "/painel/login", search: { nickname, auth } });
       }
-      await validationLoginFromGOVBR({
-        descryptedToken,
-        descryptedAuth,
-        nickname,
-      });
+      if (descryptedToken && descryptedAuth === "1") {
+        await validationLoginFromGOVBR({
+          descryptedToken,
+          descryptedAuth,
+        });
+      }
+      if (!descryptedToken && !descryptedAuth) {
+        throw redirect({ to: "/painel/login" });
+      }
     }
     if (isLogged && currentPath.includes("/login")) {
-      console.log("entrou aqui no isLogged"); 
+      console.log("entrou aqui no isLogged");
       throw redirect({ to: "/painel" });
     }
   },

@@ -104,8 +104,7 @@ export const useAuth = () => {
       await getUserData();
       throw redirect({ to: "/painel" });
     } else {
-      console.log("entrou aqui no else validateGov");
-      redirect({ to: "/painel/login", replace: true, throw: true });
+      throw redirect({ to: "/painel/login" });
     }
   }
 
