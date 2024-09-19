@@ -21,7 +21,7 @@ const SearchSchema = z.object({
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   validateSearch: SearchSchema,
-  beforeLoad: async ({ context, search, location }) => {
+  beforeLoad: async ({ context, search }) => {
     const currentPath = location.pathname;
     const { token, auth, nickname } = search;
     const descryptedAuth = descryptItem(auth || "");
@@ -36,15 +36,10 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       if (nickname) {
         throw redirect({ to: "/painel/login", search: { nickname, auth } });
       }
-      if (descryptedToken && descryptedAuth === "1") {
-        await validationLoginFromGOVBR({
-          descryptedToken,
-          descryptedAuth,
-        });
-      }
-      throw redirect({
-        to: "/painel/login",
-        statusCode: 401,
+
+      await validationLoginFromGOVBR({
+        descryptedToken,
+        descryptedAuth,
       });
     }
     if (isLogged && currentPath !== "/painel") {
