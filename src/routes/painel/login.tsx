@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Lock, User } from "lucide-react";
 import { z } from "zod";
 import Logos from "@assets/logos.png";
-import GovBR from "@assets/govbr.png";
+//import GovBR from "@assets/govbr.png";
 import { toast } from "react-toastify";
 import { descryptItem } from "@utils";
 
@@ -15,7 +15,7 @@ const searchSchema = z.object({
   nickname: z.number().optional().or(z.string().optional()),
 });
 
-export const Route = createFileRoute("/login")({
+export const Route = createFileRoute("/painel/login")({
   validateSearch: searchSchema,
   beforeLoad: ({ search }) => {
     if (search.auth?.length) {
@@ -138,7 +138,7 @@ export function Login() {
 
               <Button type="submit" title="Entrar" loading={loading} />
 
-              {descryptAuth !== "2" && (
+              {/* {descryptAuth !== "2" && (
                 <div className="flex items-center gap-4 justify-between">
                   <hr className=" h-0.5 w-full bg-primary" />
                   <p className="text-center text-sm text-muted-foreground">
@@ -146,10 +146,10 @@ export function Login() {
                   </p>
                   <hr className=" h-0.5 w-full bg-primary" />
                 </div>
-              )}
+              )} */}
             </div>
           </form>
-          {descryptAuth !== "2" && (
+          {/* {descryptAuth !== "2" && (
             <a
               className=" bg-white/80 text-dark dark:text-foreground flex items-center justify-center p-2 rounded-md hover:bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-dark focus:ring-opacity-50 shadow-lg gap-1"
               href={import.meta.env.VITE_API_LOGIN_URL}
@@ -157,7 +157,7 @@ export function Login() {
               <span>Entrar com</span>
               <img src={GovBR} alt="Logo do GOV BR" className="w-16 h-6" />
             </a>
-          )}
+          )} */}
           <img src={Logos} alt="Logo do SEI" className="object-contain" />
         </div>
       </div>

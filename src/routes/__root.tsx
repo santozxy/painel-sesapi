@@ -29,20 +29,20 @@ export const Route = createRootRouteWithContext<RouterContext>()({
     const isLogged = context.authentication.isLogged();
     const { validationLoginFromGOVBR } = context.authentication;
 
-    if (!isLogged && currentPath !== "/login") {
+    if (!isLogged && currentPath !== "/painel/login") {
       if (descryptedAuth === "0") {
-        throw redirect({ to: "/login", search: { auth: auth } });
+        throw redirect({ to: "/painel/login", search: { auth: auth } });
       }
       if (nickname) {
-        throw redirect({ to: "/login", search: { nickname, auth } });
+        throw redirect({ to: "/painel/login", search: { nickname, auth } });
       }
       await validationLoginFromGOVBR({
         descryptedToken,
         descryptedAuth,
         nickname,
       });
-    } 
-    if(isLogged && currentPath !== "/painel") {
+    }
+    if (isLogged && !currentPath.startsWith("/painel")) {
       throw redirect({ to: "/painel" });
     }
   },

@@ -79,7 +79,7 @@ export const useAuth = () => {
         if (error.response?.status === 401) {
           toast.error("Usuário não autenticado");
           signOut();
-          throw redirect({ to: "/login" });
+          throw redirect({ to: "/painel/login" });
         } else {
           toast.error(
             "Ocorreu um erro inesperado ao tentar recuperar suas informações"
@@ -104,7 +104,7 @@ export const useAuth = () => {
       await getUserData();
       throw redirect({ to: "/painel" });
     } else {
-      throw redirect({ to: "/login" });
+      throw redirect({ to: "/painel/login" });
     }
   }
 

@@ -11,18 +11,18 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as LoginImport } from './routes/login'
 import { Route as PainelIndexImport } from './routes/painel/index'
+import { Route as PainelLoginImport } from './routes/painel/login'
 
 // Create/Update Routes
 
-const LoginRoute = LoginImport.update({
-  path: '/login',
+const PainelIndexRoute = PainelIndexImport.update({
+  path: '/painel/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const PainelIndexRoute = PainelIndexImport.update({
-  path: '/painel/',
+const PainelLoginRoute = PainelLoginImport.update({
+  path: '/painel/login',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -30,11 +30,11 @@ const PainelIndexRoute = PainelIndexImport.update({
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginImport
+    '/painel/login': {
+      id: '/painel/login'
+      path: '/painel/login'
+      fullPath: '/painel/login'
+      preLoaderRoute: typeof PainelLoginImport
       parentRoute: typeof rootRoute
     }
     '/painel/': {
@@ -49,7 +49,10 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({ LoginRoute, PainelIndexRoute })
+export const routeTree = rootRoute.addChildren({
+  PainelLoginRoute,
+  PainelIndexRoute,
+})
 
 /* prettier-ignore-end */
 
@@ -59,12 +62,12 @@ export const routeTree = rootRoute.addChildren({ LoginRoute, PainelIndexRoute })
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/login",
+        "/painel/login",
         "/painel/"
       ]
     },
-    "/login": {
-      "filePath": "login.tsx"
+    "/painel/login": {
+      "filePath": "painel/login.tsx"
     },
     "/painel/": {
       "filePath": "painel/index.tsx"

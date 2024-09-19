@@ -20,7 +20,6 @@ import {
   ToastContainerStyle,
   ScrollPage,
   Header,
-  ThemeSwitcher,
   DialogRegisterCPF,
 } from "@components";
 
