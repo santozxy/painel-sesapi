@@ -43,6 +43,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       });
     }
     if (isLogged && currentPath.includes("/login")) {
+      console.log("entrou aqui no isLogged"); 
       throw redirect({ to: "/painel" });
     }
   },

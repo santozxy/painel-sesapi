@@ -93,6 +93,10 @@ export const useAuth = () => {
     descryptedToken,
     descryptedAuth,
   }: ValidationLoginFromGOVBR) {
+    if (!descryptedToken && !descryptedAuth) {
+      console.log("entrou aqui !descryptedToken && !descryptedAuth");
+      throw redirect({ to: "/painel/login" });
+    }
     if (descryptedToken && descryptedAuth === "1") {
       const encryptedToken = CryptoJS.AES.encrypt(
         descryptedToken,
@@ -104,7 +108,8 @@ export const useAuth = () => {
       await getUserData();
       throw redirect({ to: "/painel" });
     } else {
-      throw redirect({ to: "/painel/login" ,replace: true});
+      console.log("entrou aqui no else validateGov");
+      throw redirect({ to: "/painel/login", replace: true });
     }
   }
 
