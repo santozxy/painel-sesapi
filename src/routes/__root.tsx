@@ -42,9 +42,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
           descryptedAuth,
         });
       }
-      if (!descryptedToken && !descryptedAuth) {
-        throw redirect({ from: "/painel", to: "/painel/login" });
-      }
+      throw redirect({ from: "/painel", to: "/painel/login" });
     }
     if (isLogged && !currentPath.startsWith("/painel")) {
       throw redirect({ to: "/painel" });
